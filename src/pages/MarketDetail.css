@@ -1,0 +1,125 @@
+.breadcrumb-container {
+  background: var(--white);
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--primary-green);
+}
+
+.detail-hero {
+  background: var(--white);
+  padding: 3rem 0;
+}
+
+.detail-hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.detail-image img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.detail-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.detail-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-actions .btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.detail-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.schedule-table {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule-row:last-child {
+  border-bottom: none;
+}
+
+.schedule-row.today {
+  background-color: #f0fdf4;
+  margin: 0 -1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  color: var(--dark-green);
+}
+
+.produce-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.produce-item {
+  background: var(--white);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.produce-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  color: var(--primary-green);
+}

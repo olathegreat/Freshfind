@@ -1,0 +1,157 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.contact-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--dark-green);
+}
+
+.info-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background: #f0fdf4;
+  color: var(--primary-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.info-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.info-item p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-form-container {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.contact-form-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--dark-green);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.contact-form .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.success-message {
+  background: #f0fdf4;
+  border: 1px solid var(--primary-green);
+  color: var(--dark-green);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.success-message .small-text {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+}
+
+.map-section {
+  text-align: center;
+}
+
+.map-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-green);
+}
+
+.map-placeholder {
+  margin-top: 2rem;
+  height: 300px;
+  background: #e8f5e9;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--primary-green);
+}
+
+.map-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--dark-green);
+  gap: 0.5rem;
+}
+
+.map-content p {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.map-content span {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
