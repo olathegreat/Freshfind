@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaBookOpen, FaCalendarAlt, FaUsers, FaLeaf } from 'react-icons/fa';
+import { FaSearch, FaBookOpen, FaCalendarAlt, FaUsers} from 'react-icons/fa';
 import './About.css';
 
 const About = () => {
@@ -10,11 +10,11 @@ const About = () => {
 
   return (
     <div className="about-page">
-      <div className="page-header section">
-        <div className="container animate-fade-up">
+      <div className="page-header-section">
+        <div className="container-animate-fade-up">
           <span className="badge">About FreshFind</span>
-          <h1>Making Local Markets Easier to Discover</h1>
-          <p>FreshFind brings useful farmers’ market information together so residents can discover nearby markets, explore seasonal produce, and plan their visits with confidence.</p>
+          <h1 className="page-title">Making Local Markets Easier to Discover</h1>
+          <p className="page-subtitle">FreshFind brings useful farmers’ market information together so residents can discover nearby markets, explore seasonal produce, and plan their visits with confidence.</p>
         </div>
       </div>
 
@@ -22,13 +22,17 @@ const About = () => {
       <div className="container section">
         <div className="about-grid animate-fade-up delay-1">
           <div className="about-text">
-            <h2>Why FreshFind Exists</h2>
-            <p>Finding information about local farmers’ markets shouldn't require checking different flyers, social media pages, community boards, or asking around.</p>
+            <h2>Why freshFind Exists</h2>
+            <p>Welcome to fresh find, a simple and accessible platform created to help communities discover nearby farmers' markets and make the most of fresh, seasonal, and locally produced goods.Finding farmers' markets can sometimes be difficult because information about their locations, operating days, opening hours, and available products may be scattered across social media, flyers, community boards, and word of mouth.   FreshFind brings this information together in one convenient place.
+             </p>
+
             <p>FreshFind brings market locations, opening times, and produce information together in one simple platform.</p>
-            <p className="highlight-text">This directly reflects the problem identified in the SRS: market information is scattered across multiple sources, making it difficult for residents to know where and when to visit.</p>
+
+            <p className="highlight-text">FreshFind is a digital space for agriculture that connects farmers, buyers, and agricultural communities. It helps users discover fresh produce, explore market information, learn about farming, and connect with opportunities across the agricultural sector.</p>
+
           </div>
           <div className="about-image">
-            <img src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&q=80&w=600" alt="Community Market" />
+            <img src="https://res.cloudinary.com/tummi9le/image/upload/v1790335510/image20.png" alt="Community Market" />
           </div>
         </div>
       </div>
@@ -77,11 +81,47 @@ const About = () => {
             <h2>Meet the Team</h2>
             <p>FreshFind is built by a team focused on creating a simple and accessible way to discover local markets.</p>
             <div className="team-icons">
-              <FaLeaf className="team-leaf" />
-              <FaLeaf className="team-leaf" />
-              <FaLeaf className="team-leaf" />
+              <div className="team-icon">
+                <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790345855/Image.jpg" alt="Team Member" />
+                <span>Ayoleye Ayonitemi</span>
+                <span>Developer</span>
+              </div>
+
+              <div className="team-icon">
+                <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790346862/Image_1.jpg" alt="Team Icon" />
+                <span>Adesawe Oreoluwa</span>
+                <span>Developer</span>
+              </div>
+
+                <div className="team-icon">
+                <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790347531/joe.jpg" alt="Team Icon" />
+                <span>Nnamdi Henry</span>
+                <span>Developer</span>
+              </div>
+
+              <div className="team-icon">
+                <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790348817/Will.jpg" alt="Team Icon" />
+                <span>Amadi Godswill</span>
+                <span>Developer</span>
+              </div>
+
+              <div className="team-icon">
+                <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790352138/AY.jpg" alt="Team Icon" />
+                <span>Ayodeji Keshinro</span>
+                <span>Developer</span>
+              </div>
+
+              <div className="team-icon">
+                <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790352401/Dan.jpg" alt="Team Icon" />
+                <span>Daniel Olalekan</span>
+                <span>Developer</span>
+              </div>
+
+              
+            
             </div>
           </div>
+
           <div className="cta-box">
             <h3>Ready to Discover What's Fresh?</h3>
             <Link to="/markets" className="btn btn-primary" style={{marginTop: '1rem'}}>Find a Market</Link>

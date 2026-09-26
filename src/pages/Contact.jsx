@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaClock, FaPaperPlane } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+
 import './Contact.css';
+import { BsEnvelope } from 'react-icons/bs';
+import { PiMapPinLineLight } from 'react-icons/pi';
+import { FiPhoneCall } from 'react-icons/fi';
+import { FaPaperPlane } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -22,6 +26,7 @@ const Contact = () => {
     setTimeout(() => setSubmitted(false), 5000); // Reset message after 5 seconds
   };
 
+
   return (
     <div className="contact-page">
       <div className="page-header section">
@@ -35,44 +40,28 @@ const Contact = () => {
         <div className="contact-grid">
           {/* Contact Information */}
           <div className="contact-info animate-fade-up delay-1">
-            <h2>Contact Information</h2>
-            
             <div className="info-item">
-              <div className="info-icon"><FaMapMarkerAlt /></div>
-              <div>
-                <h4>Visit Us</h4>
-                <p>FreshFind Community Office<br />Market District</p>
-              </div>
+              <PiMapPinLineLight className="info-icon"/>
+                <p>Aptech Ringroad, Ibadan, Oyo State, NIGERIA</p>
             </div>
 
             <div className="info-item">
-              <div className="info-icon"><FaEnvelope /></div>
-              <div>
-                <h4>Email</h4>
-                <p>hello@freshfind.example</p>
-              </div>
+              <BsEnvelope className="info-icon"/>
+                <p>freshfind@gmail.com</p>
+                <p>help.freshfind@gmail.com</p>
             </div>
 
-            <div className="info-item">
-              <div className="info-icon"><FaPhone /></div>
-              <div>
-                <h4>Phone</h4>
-                <p>+234 800 000 0000</p>
-              </div>
-            </div>
-
-            <div className="info-item">
-              <div className="info-icon"><FaClock /></div>
-              <div>
-                <h4>Hours</h4>
-                <p>Monday – Friday<br />9:00 AM – 5:00 PM</p>
-              </div>
+            <div className="info-item2">
+              <FiPhoneCall className="info-icon"/>
+                <p>+234 807 612 3249 </p>
+                <p>+234 812 215 2357</p>
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="contact-form-container animate-fade-up delay-2">
             <h2>Send Us a Message</h2>
+            <h5>Have a question or feedback? Fill out the form and we will get back to you.</h5>
             
             {submitted ? (
               <div className="success-message">
@@ -82,19 +71,13 @@ const Contact = () => {
             ) : (
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-group">
-                  <label>Full Name</label>
-                  <input type="text" name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
+                  <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
                 </div>
                 <div className="form-group">
-                  <label>Email Address</label>
-                  <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
+                  <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
                 </div>
+                
                 <div className="form-group">
-                  <label>Subject</label>
-                  <input type="text" name="subject" placeholder="What is your message about?" value={formData.subject} onChange={handleChange} required />
-                </div>
-                <div className="form-group">
-                  <label>Message</label>
                   <textarea name="message" rows="4" placeholder="Tell us how we can help..." value={formData.message} onChange={handleChange} required></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary full-width">
@@ -107,17 +90,12 @@ const Contact = () => {
 
         {/* Map Section */}
         <div className="map-section animate-fade-up delay-3">
-          <h2>Find Us</h2>
-          <p>Use the map to view our location and plan your route.</p>
+          <h2>Find Us 🍀</h2>
+          <p>Explore fresh markets and discover what is growing around you.</p>
           <div className="map-placeholder">
             {/* Placeholder for actual Google Map integration */}
-            <div className="map-content">
-              <FaMapMarkerAlt size={40} />
-              <p>Map Integration Area</p>
-              <span>Central Community Market Road</span>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d247.31767490788292!2d3.8716741647541824!3d7.358634841816332!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa7e4c41b4f088ca3%3A0xd6fcaaa98b447682!2sAptech%20Ringroad!5e0!3m2!1sen!2sng!4v1790337071731!5m2!1sen!2sng"  allowFullScreen="" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" className='map'></iframe>
           </div>
-          <button className="btn btn-secondary" style={{marginTop: '1rem'}}>Get Directions</button>
         </div>
       </div>
     </div>
@@ -125,3 +103,4 @@ const Contact = () => {
 };
 
 export default Contact;
+// export default MapComponent;

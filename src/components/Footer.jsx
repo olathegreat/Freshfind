@@ -1,82 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaLeaf, FaFacebookF, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa';
-import './Footer.css';
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
+import './Navbar.css';
+import logo from "../assets/freshfind-logo.png";
+export default function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer-container">
-        
-        {/* Brand Column */}
-        <div className="footer-col brand-col">
-          <Link to="/" className="footer-logo">
-            <FaLeaf className="footer-logo-icon" />
-            <span>FreshFind</span>
-          </Link>
-          <p className="footer-tagline">Fresh All Along</p>
-          <p className="footer-desc">
-            Discover local farmers’ markets, explore seasonal produce, and plan your next market visit.
-          </p>
-          <div className="social-links">
-            <a href="#" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="#" aria-label="Twitter"><FaTwitter /></a>
-            <a href="#" aria-label="Instagram"><FaInstagram /></a>
+      <div className="container footer-grid">
+        <div className="footer-intro">
+          <img src={logo} alt="FreshFind" className="footer-logo" />
+          <p>Your local market companion. Find the best<br />of produce directly from farmers with no hassle.</p>
+          <div className="footer-contact">
+            <a href="tel:+23482356789">(234) 823-56789</a>
+            <span>or</span>
+            <a href="mailto:Freshfind@gmail.com">Freshfind@gmail.com</a>
           </div>
         </div>
 
-        {/* Quick Links Columns */}
-        <div className="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><Link to="/markets">Find a Market</Link></li>
-            <li><Link to="/produce">Produce Guide</Link></li>
-            <li><Link to="/seasonal">Seasonal Picks</Link></li>
-            <li><Link to="/bookmarks">Saved Markets</Link></li>
-          </ul>
-        </div>
-
-        <div className="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="#">FAQs</Link></li>
-            <li><Link to="#">FreshFind Assistant</Link></li>
-          </ul>
-        </div>
-
-        {/* Newsletter Column */}
-        <div className="footer-col newsletter-col">
-          <h4>Stay Updated</h4>
-          <p>Subscribe to our newsletter for seasonal updates and market news.</p>
-          <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            <div className="input-group">
-              <FaEnvelope className="input-icon" />
-              <input type="email" placeholder="Your email address" required />
-              <button type="submit" className="btn btn-primary">Subscribe</button>
-            </div>
-          </form>
-        </div>
-
+        <FooterColumn title="Home page" links={["Open Now", "Popular Market", "Popular Produce", "Markets Near You"]} />
+        <FooterColumn title="About Us" links={["About", "Mission", "Vision", "Our Team"]} />
+        <FooterColumn title="Find a Market" links={["Markets", "Opened Now", "Market Nearby"]} />
+        <FooterColumn title="Produce" links={["Fruit & Vegetables", "Meat & Fish", "Herbs", "View produce"]} />
       </div>
-
-      {/* Footer Bottom */}
-      <div className="footer-bottom">
-        <div className="container footer-bottom-content">
-          <p>&copy; {currentYear} FreshFind. All Rights Reserved.</p>
-          <div className="footer-bottom-links">
-            <Link to="#">Privacy Policy</Link>
-            <Link to="#">Terms of Service</Link>
-            {/* Dummy Login/Signup for design continuity */}
-            <Link to="#" className="dummy-auth-link">Sign In / Sign Up</Link>
-          </div>
-        </div>
+      <div className="container footer-bottom">
+        <p>Freshfind© 2026. All Rights Reserved</p>
       </div>
     </footer>
   );
-};
+}
 
-export default Footer;
+export function FooterColumn({ title, links }) {
+  return (
+    <div className="footer-column">
+      <h2>{title}</h2>
+      {links.map((link) => <a href="#" key={link}>{link}</a>)}
+    </div>
+  );
+}

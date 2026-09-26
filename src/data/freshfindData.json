@@ -1,42 +1,583 @@
-{
-  "markets": [
+
+
+  {
+    "markets": [
     {
       "id": 1,
-      "name": "Green Valley Farmers Market",
-      "location": "Central Community",
-      "hours": "8:00 AM – 5:00 PM",
-      "days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "description": "Fresh vegetables, fruits, herbs, eggs and locally produced goods.",
+      "name": "Mile 12 Market",
+      "location": "Mile 12, Lagos",
+      "hours": "8:00 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A beautifully organized market offering a wide variety of fresh produce, meats, and local delicacies.",
       "availableProduce": ["Tomatoes", "Carrots", "Lettuce", "Eggs"],
-      "image": "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=400"
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790267540/2AC3786A-86F6-4E78-8A0C-2565CD8B15F6.png"
     },
     {
       "id": 2,
-      "name": "Harvest Lane Market",
-      "location": "Riverside District",
-      "hours": "9:00 AM – 4:00 PM",
-      "days": ["Wednesday", "Thursday", "Friday", "Saturday"],
+      "name": "Oyingbo Market",
+      "location": "Oyingbo- Ebute Metta, Lagos",
+      "hours": "8:00 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       "description": "A community market featuring fresh produce from local growers.",
       "availableProduce": ["Apples", "Sweet Corn", "Leafy Greens"],
-      "image": "https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&q=80&w=400"
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790277063/market1.png",
+      "categories": ["Fruits", "Vegetables", "Dairy"]
     },
     {
       "id": 3,
-      "name": "FreshFields Market",
-      "location": "Westside Community",
-      "hours": "7:30 AM – 3:00 PM",
-      "days": ["Friday", "Saturday", "Sunday"],
+      "name": "Ketu Market",
+      "location": "Ketu, Lagos",
+      "hours": "7:00 AM – 7:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       "description": "Fresh seasonal fruits, vegetables and farm products.",
+      "availableProduce": ["Bananas", "Strawberries", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790278427/Market2.png"
+    },
+    {
+      "id": 4,
+      "name": "Fruit Market, Ilupeju",
+      "location": "Ilupeju, Lagos",
+      "hours": "7:30 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "Fresh seasonal fruits, vegetables and farm products.",
+      "availableProduce": ["Veggies", "Oranges", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790279831/Market3.png"
+    },
+    {
+      "id": 5,
+      "name": "Masha Fruit Farmers Market",
+      "location": "Surulere, Lagos",
+      "hours": "6:00 AM – 4:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A vibrant market with a variety of fresh produce and artisanal goods.",
+      "availableProduce": ["Strawberries", "Blueberries", "Tomatoes", "Carrots"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790282750/Market4.png"
+    },
+    {
+      "id": 6,
+      "name": "Jakande Fruit Market",
+      "location": "Ketu, Lagos",
+      "hours": "8:00 AM – 5:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A family-friendly market offering fresh produce, baked goods, and handmade crafts.",
+      "availableProduce": ["Potatoes", "Sweet Corn", "Carrots", "Leafy Greens"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790283685/Market5.png"
+    },
+    {
+      "id": 7,
+      "name": "Oshodi Market",
+      "location": "Oshodi, Lagos",
+      "hours": "9:00 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "one of the largest, busiest, and most chaotic open-air commercial hubs in West Africa.",
+      "availableProduce": ["Pumpkins", "Watermelons", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790284459/Market6.png"
+    },
+    {
+      "id": 8,
+      "name": "Daleko Market",
+      "location": "Mushin, Lagos",
+      "hours": "8:00 AM – 5:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A Major wholesale grain and food market located in Mushin, Lagos.",
       "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens", "Fresh Herbs"],
-      "image": "https://images.unsplash.com/photo-1573246123716-6b1782bfc499?auto=format&fit=crop&q=80&w=400"
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790285303/Market7.png"
+    },
+    {
+      "id": 9,
+      "name": "Bodija Market",
+      "location": "Bodija, Ibadan",
+      "hours": "7:00 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A bustling market with fresh produce, baked goods, and local crafts.",
+      "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790285816/Market8.png"
+    },
+    {
+      "id": 10,
+      "name": "Dugbe Market",
+      "location": "Dugbe, Ibadan",
+      "hours": "9:00 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "It's a very large market, and prices of goods are relatively cheap.",
+      "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790286816/Market9.png"
+    },
+    {
+      "id": 11,
+      "name": "Oja-Oba Market",
+      "location": "oja-oba, ibadan",
+      "hours": "9:00 AM – 7:00 PM",
+      "days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A market that connects local farmers with the community, offering fresh produce and artisanal goods.",
+      "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790288230/market10.png"
+    },
+    {
+      "id": 12,
+      "name": "Onitsha main market",
+      "location": "Onitsha, Anambra State",
+      "hours": "9:00 AM – 6:00 PM",
+      "days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A weekend market with a variety of fresh produce, baked goods, and local crafts.",
+      "availableProduce": ["Onions", "Cabbage", "Plantains", "Pineapples"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790289129/Market11.png"
+    },
+    {
+      "id": 13,
+      "name": "Garik international market",
+      "location": "Garik, Abuja",
+      "hours": "7:00 AM – 3:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "description": "The Garki International Market is one of the most prominent, largest, and longest-standing commercial hubs in the Federal Capital Territory. It is a bustling marketplace that serves as a central trading point for various goods and services, attracting both local residents and visitors from different parts of Nigeria.",
+      "availableProduce": ["Corn", "pomegranates", "Guava", "Yams"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790290828/Market12.png"
+    },
+    {
+      "id": 14,
+      "name": "Wuse Market",
+      "location": "Wuse, Abuja",
+      "hours": "9:00 AM – 4:00 PM",
+      "days": ["Monday", "Tuesday", "Thursday", "Friday", "Saturday"],
+      "description": "A weekend market with a variety of fresh produce and local crafts.",
+      "availableProduce": ["Gingers", "Carrots", "Green Beans", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790291713/Market13.png"
+    },
+    {
+      "id": 15,
+      "name": "Dawanau Market",
+      "location": "Dawanau, Kano",
+      "hours": "10:00 AM – 7:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"],
+      "description": "Dawanau International Grains Market in Kano State is the largest agricultural commodity and grain market in West Africa.",
+      "availableProduce": ["Corn", "pomegranates", "Guava", "Yams"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790292288/Market14.png"
+    },
+    {
+      "id": 16,
+      "name": "Sabon Gari Market",
+      "location": "Sabon Gari, Kano",
+      "hours": "7:30 AM – 3:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday"],
+      "description": "A vibrant market with a variety of fresh produce and artisanal goods.",
+      "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790292672/Market15.png"
+    },
+    {
+      "id": 17,
+      "name": "Oil Mill Market",
+      "location": "Portharcourt, Rivers State",
+      "hours": "8:00 AM – 4:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "The Oil Mill Market is a famous, community-owned weekly market in Port Harcourt located at Eleme Junction (Rumuokwurusi Junction) along Aba Road. It is a vibrant and bustling marketplace that serves as a central hub for trade and commerce in the region. The market is known for its diverse range of goods, including fresh produce, clothing, household items, electronics, and various other products. It attracts both local residents and visitors from neighboring areas, making it a lively and dynamic shopping destination.",
+      "availableProduce": ["Tomatoes", "Habanero Peppers", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790329005/Market16.png"
+    },
+    {
+      "id": 18,
+      "name": "Fruit & Vegetable Market, Onitsha",
+      "location": "Onitsha, Anambra State",
+      "hours": "9:00 AM – 3:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "A local market featuring fresh produce, flowers, and artisanal products.",
+      "availableProduce": ["Tomatoes", "Carrots", "Oranges", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790329621/Market17.png"
+    },
+    {
+      "id": 19,
+      "name": "Iyana-Iba Market",
+      "location": "Iyana-Iba, Lagos State",
+      "hours": "9:00 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "Iyana-Iba market is a place for different various of goods and products you are looking for in a cheap rate.",
+      "availableProduce": ["Avocado", "Carrots", "Coconuts", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790330239/Market18.png"
+    },
+    {
+      "id": 20,
+      "name": "Maitama Farmers Market, Abuja",
+      "location": "Maitama, Abuja",
+      "hours": "7:30 AM – 6:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "The Maitama Farmers Market on IBB Way and Yedseram Crescent in Maitama, Abuja, is a clean, organized open-air market known for a wide variety of fresh local and exotic fruits, vegetables, and gourmet groceries.",
+      "availableProduce": ["pomegranates", "Coconuts", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790330859/Market19.png"
+    },
+    {
+      "id": 21,
+      "name": "Akinyele Market, Ibadan",
+      "location": "Akinyele, Ibadan",
+      "hours": "8:00 AM – 4:00 PM",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "description": "Akinyele farmers market has the best price for peppers, tomatoes and vegetables. The only bad side is the environment - terrible whenever it rains.",
+      "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens", "Fresh Herbs"],
+      "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790331466/Market20.png"
     }
   ],
+  
   "produce": [
-    { "id": 1, "name": "Tomatoes", "category": "Vegetable", "season": "Summer" },
-    { "id": 2, "name": "Sweet Corn", "category": "Vegetable", "season": "Summer" },
-    { "id": 3, "name": "Carrots", "category": "Vegetable", "season": "Spring/Fall" },
-    { "id": 4, "name": "Leafy Greens", "category": "Vegetable", "season": "Spring/Fall" }
-  ],
+  {
+    "id": 1,
+    "name": "Rice",
+    "category": "Grains",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/47/65/23/476523b948bd6335216ee32a0f983f50.jpg",
+    "description": "A staple Nigerian grain commonly used in jollof rice, fried rice, and other meals.",
+    "markets": ["Mile 12 Market", "Daleko Market", "Wuse Market"]
+  },
+  {
+    "id": 2,
+    "name": "Yam",
+    "category": "Tubers",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/236x/45/64/ec/4564ecaa4f7b805ca08f6d3645f782a4.jpg",
+    "description": "A popular Nigerian tuber enjoyed boiled, fried, roasted, or pounded.",
+    "markets": ["Mile 12 Market", "Bodija Market", "Oja-Oba Market"]
+  },
+  {
+    "id": 3,
+    "name": "Mango",
+    "category": "Fresh Fruits",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/74/3c/76/743c767d18b0a94e4c669c88c6feb49f.jpg",
+    "description": "A sweet and juicy tropical fruit enjoyed fresh or used in drinks and desserts.",
+    "markets": ["Oyingbo Market", "Jakande Fruit Market", "Masha Fruit Farmers Market"]
+  },
+  {
+    "id": 4,
+    "name": "Beans",
+    "category": "Legumes",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/63/91/b5/6391b51ad930e379766a8ba7dfe9b94f.jpg",
+    "description": "Nutritious beans commonly used in Nigerian dishes such as moi moi and bean porridge.",
+    "markets": ["Mile 12 Market", "Daleko Market", "Dawanau Market"]
+  },
+  {
+    "id": 5,
+    "name": "Tomato",
+    "category": "Fresh Vegetables",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/1200x/4a/d3/9f/4ad39f0d76c69888ed0efad2d2a74b78.jpg",
+    "description": "A juicy vegetable widely used in Nigerian soups, stews, sauces, and jollof rice.",
+    "markets": ["Mile 12 Market", "Oyingbo Market", "Ketu Market"]
+  },
+  {
+    "id": 6,
+    "name": "Scent Leaf",
+    "category": "Herbs",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/7a/51/e1/7a51e1fcea3a5da700d38094fc70eb30.jpg",
+    "description": "A juicy vegetable widely used in Nigerian soups, stews, sauces, and jollof rice.",
+    "markets": ["Oyingbo Market", "Mile 12 Market", "Bodija Market"]
+  },
+  {
+    "id": 7,
+    "name": "Chicken",
+    "category": "Poultry & Eggs",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/1200x/18/94/f1/1894f170eba3d65d49dca78785fca29a.jpg",
+    "description": "A popular poultry product used in a wide variety of Nigerian meals.",
+    "markets": ["Oshodi Market", "Bodija Market", "Wuse Market"]
+  },
+  {
+    "id": 8,
+    "name": "Maize",
+    "category": "Grains",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/70/b8/c9/70b8c9ad3a229826fea4071b8569ddd5.jpg",
+    "description": "A popular poultry product used in a wide variety of Nigerian meals.",
+    "markets": ["Mile 12 Market", "Daleko Market", "Dawanau Market"]
+
+  },
+  {
+    "id": 9,
+    "name": "Cassava",
+    "category": "Tubers",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/f6/3e/52/f63e525606a6f5970474b70692086489.jpg",
+    "description": "A widely cultivated root crop used to make garri, fufu, tapioca, and other foods.",
+    "markets": ["Bodija Market", "Dugbe Market", "Oja-Oba Market"]
+  },
+  {
+    "id": 10,
+    "name": "Watermelon",
+    "category": "Fresh Fruits",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/c1/c0/c4/c1c0c4996f19337caada49f6ddc01611.jpg",
+    "description": "A refreshing fruit with high water content and naturally sweet, juicy flesh.",
+    "markets": ["Mile 12 Market", "Jakande Fruit Market", "Oyingbo Market"]
+  },
+  {
+    "id": 11,
+    "name": "Groundnut",
+    "category": "Legumes",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/f6/f7/4d/f6f74d9d0102a17b1e5f83b28f38de5f.jpg",
+    "description": "A nutritious legume enjoyed roasted, boiled, or processed into groundnut products.",
+    "markets": ["Daleko Market", "Dawanau Market", "Mile 12 Market"]
+  },
+  {
+    "id": 12,
+    "name": "Pepper",
+    "category": "Fresh Vegetables",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/15/c3/92/15c392c8505ef1b56cb22a9f92f81e6b.jpg",
+    "description": "A flavorful crop used to add heat, color, and taste to Nigerian dishes.",
+    "markets": ["Mile 12 Market", "Ketu Market", "Oyingbo Market"]
+  },
+  {
+    "id": 13,
+    "name": "Uziza Leaf",
+    "category": "Herbs",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/f6/17/34/f617346cfccea075df70fc2069fb742a.jpg",
+    "description": "A fragrant Nigerian herb commonly used to season soups and traditional dishes.",
+    "markets": ["Oyingbo Market", "Mile 12 Market", "Onitsha Market"]
+  },
+  {
+    "id": 14,
+    "name": "Chicken Eggs",
+    "category": "Poultry & Eggs",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/8d/a5/02/8da502f6326fe85cafee3de53bd2d65f.jpg",
+    "description": "Fresh eggs from chickens, commonly used for breakfast, baking, and cooking.",
+    "markets": ["Oshodi Market", "Bodija Market", "Wuse Market"]
+  },
+  {
+    "id": 15,
+    "name": "Millet",
+    "category": "Grains",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/05/ec/13/05ec1372c3eb0e532a2fe989b759d6c1.jpg",
+    "description": "A nutritious cereal grain commonly used for pap, porridge, and traditional beverages.",
+    "markets": ["Dawanau Market", "Daleko Market", "Wuse Market"]
+  },
+  {
+    "id": 16,
+    "name": "Sweet Potato",
+    "category": "Tubers",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/c7/fb/96/c7fb965d3b9440860f503feea6686ffb.jpg",
+    "description": "A naturally sweet root crop that can be boiled, fried, roasted, or baked.",
+    "markets": ["Mile 12 Market", "Bodija Market", "Dugbe Market"]
+  },
+  {
+    "id": 17,
+    "name": "Pineapple",
+    "category": "Fresh Fruits",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/a2/f8/a0/a2f8a0672e52b05cbb82a427b4344f98.jpg",
+    "description": "A sweet and tangy tropical fruit commonly enjoyed fresh or used in beverages.",
+    "markets": ["Jakande Fruit Market", "Masha Fruit Farmers Market", "Oyingbo Market"]
+  },
+  {
+    "id": 18,
+    "name": "Soybean",
+    "category": "Legumes",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/61/6a/5d/616a5d6abcb73b6e38fd7f246060ec90.jpg",
+    "description": "A protein-rich legume used in food products, beverages, and animal feed.",
+    "markets": ["Dawanau Market", "Wuse Market", "Mile 12 Market"]
+  },
+  {
+    "id": 19,
+    "name": "Okra",
+    "category": "Fresh Vegetables",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/2b/30/b3/2b30b3588bf37a6e0af93b987d2b8eee.jpg",
+    "description": "A green vegetable widely used to prepare thick and flavorful Nigerian soups.",
+    "markets": ["Mile 12 Market", "Oyingbo Market", "Bodija Market"]
+  },
+  {
+    "id": 20,
+    "name": "Bitter Leaf",
+    "category": "Herbs",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/4e/be/9b/4ebe9b2f3812efe022853c8e2ff1dc36.jpg",
+    "description": "A traditional Nigerian leaf used in soups and dishes after reducing its natural bitterness.",
+    "markets": ["Oyingbo Market", "Onitsha Market", "Bodija Market"]
+  },
+  {
+    "id": 21,
+    "name": "Turkey",
+    "category": "Poultry & Eggs",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/26/3c/d9/263cd903d9eee5d79d7601b5e476cd17.jpg",
+    "description": "A nutritious poultry product commonly prepared by roasting, grilling, frying, or stewing.",
+    "markets": ["Oshodi Market", "Wuse Market", "Bodija Market"]
+  },
+  {
+    "id": 22,
+    "name": "Sorghum",
+    "category": "Grains",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/43/d4/67/43d46785f49bf95cf4ac6b266e48dffd.jpg",
+    "description": "A hardy cereal grain used for flour, pap, traditional drinks, and animal feed.",
+    "markets": ["Dawanau Market", "Daleko Market", "Wuse Market"]
+  },
+  {
+    "id": 23,
+    "name": "Cocoyam",
+    "category": "Tubers",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/b6/f5/71/b6f571d617278a932a668bba4cc70684.jpg",
+    "description": "A starchy root crop commonly boiled, pounded, or used in traditional Nigerian meals.",
+    "markets": ["Oja-Oba Market", "Bodija Market", "Onitsha Market"]
+  },
+  {
+    "id": 24,
+    "name": "Pawpaw (Papaya)",
+    "category": "Fresh Fruits",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/3e/b7/09/3eb70942b0c431d83760ff75e03a5516.jpg",
+    "description": "A soft, sweet tropical fruit commonly eaten fresh or blended into drinks.",
+    "markets": ["Jakande Fruit Market", "Masha Fruit Farmers Market", "Oyingbo Market"]
+  },
+  {
+    "id": 25,
+    "name": "Bambara Nut",
+    "category": "Legumes",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/5b/56/43/5b5643eee9a41437ad52c671ab5f6db4.jpg",
+    "description": "A nutritious African legume commonly boiled, roasted, or used in traditional dishes.",
+    "markets": ["Dawanau Market", "Daleko Market", "Mile 12 Market"]
+  },
+  {
+    "id": 26,
+    "name": "Onion",
+    "category": "Fresh Vegetables",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/2a/d7/c1/2ad7c1709623f81109fc8f01e9cc8d66.jpg",
+    "description": "A flavorful vegetable used as a base ingredient in soups, stews, sauces, and meals.",
+    "markets": ["Mile 12 Market", "Dawanau Market", "Wuse Market"]
+  },
+  {
+    "id": 27,
+    "name": "Basil",
+    "category": "Herbs",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/9e/f5/73/9ef57378da5a6265727cdd48b3d413d9.jpg",
+    "description": "An aromatic herb used to enhance the flavor of sauces, soups, salads, and drinks.",
+    "markets": ["Oyingbo Market", "Bodija Market", "Mile 12 Market"]
+  },
+  {
+    "id": 28,
+    "name": "Quail Eggs",
+    "category": "Poultry & Eggs",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/8c/a1/ec/8ca1ecc011acd6c2b42a4c68fca26e95.jpg",
+    "description": "Small, nutritious eggs commonly eaten boiled, fried, or added to meals.",
+    "markets": ["Oshodi Market", "Wuse Market", "Onitsha Market"]
+  },
+  {
+    "id": 29,
+    "name": "Fonio",
+    "category": "Grains",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/de/62/2e/de622e5bcb3a7affca744064b0c6de08.jpg",
+    "description": "A small nutritious grain traditionally cultivated in parts of Northern Nigeria.",
+    "markets": ["Dawanau Market", "Wuse Market", "Daleko Market"]
+  },
+  {
+    "id": 30,
+    "name": "Irish Potato",
+    "category": "Tubers",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/1200x/a5/06/48/a506485973d7c1f71f69dad92f7c6686.jpg",
+    "description": "A versatile tuber commonly prepared as fries, chips, mashed potatoes, or boiled meals.",
+    "markets": ["Mile 12 Market", "Bodija Market", "Wuse Market"]
+  },
+  {
+    "id": 31,
+    "name": "Orange",
+    "category": "Fresh Fruits",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/11/12/71/11127117450dba72080155d874bd1c38.jpg",
+    "description": "A juicy citrus fruit known for its sweet flavor and refreshing taste.",
+    "markets": ["Jakande Fruit Market", "Masha Fruit Farmers Market", "Oyingbo Market"]
+  },
+  {
+    "id": 32,
+    "name": "Cowpea",
+    "category": "Legumes",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/04/f9/ef/04f9ef8f10f02b5862b8105c113edc7f.jpg",
+    "description": "A nutritious legume widely grown in Nigeria and used in beans dishes and flour.",
+    "markets": ["Mile 12 Market", "Dawanau Market", "Daleko Market"]
+  },
+  {
+    "id": 33,
+    "name": "Ugu (Fluted Pumpkin)",
+    "category": "Fresh Vegetables",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/cc/06/23/cc06235dcc0b8034f7d59a7a0fe6d490.jpg",
+    "description": "A nutritious leafy vegetable commonly used in Nigerian soups and vegetable dishes.",
+    "markets": ["Oyingbo Market", "Mile 12 Market", "Onitsha Market"]
+  },
+  {
+    "id": 34,
+    "name": "Mint",
+    "category": "Herbs",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/41/bd/64/41bd64ce9f6d1b93933986192c0094bd.jpg",
+    "description": "A refreshing aromatic herb commonly used in drinks, teas, sauces, and garnishes.",
+    "markets": ["Oyingbo Market", "Bodija Market", "Wuse Market"]
+  },
+  {
+    "id": 35,
+    "name": "Duck Eggs",
+    "category": "Poultry & Eggs",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/9b/4e/bf/9b4ebf415ee60fb295de161f82f516d5.jpg",
+    "description": "Rich and nutritious eggs that can be boiled, fried, baked, or used in cooking.",
+    "markets": ["Oshodi Market", "Bodija Market", "Wuse Market"]
+  },
+  {
+    "id": 36,
+    "name": "Brown Rice",
+    "category": "Grains",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/62/00/e0/6200e06933b72d04362fab4e78662e5e.jpg",
+    "description": "A minimally processed rice variety with a nutty flavor and wholesome texture.",
+    "markets": ["Daleko Market", "Mile 12 Market", "Wuse Market"]
+  },
+  {
+    "id": 37,
+    "name": "Plantain",
+    "category": "Tubers",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/ae/b8/12/aeb81200b58b78f082622be450b1a87c.jpg",
+    "description": "A versatile tropical crop commonly fried, boiled, roasted, or used in local dishes.",
+    "markets": ["Mile 12 Market", "Oja-Oba Market", "Dugbe Market"]
+  },
+  {
+    "id": 38,
+    "name": "Guava",
+    "category": "Fresh Fruits",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/736x/b8/76/37/b876374d6bfde90386e1a4ee2d92eb51.jpg",
+    "description": "A fragrant tropical fruit with sweet flesh that can be eaten fresh or made into juice.",
+    "markets": ["Jakande Fruit Market", "Masha Fruit Farmers Market", "Oyingbo Market"]
+  },
+  {
+    "id": 39,
+    "name": "Black-eyed Beans",
+    "category": "Legumes",
+    "season": "Rainy",
+    "picture": "https://i.pinimg.com/1200x/d6/88/88/d6888810f03cb74aae16052b2667a411.jpg",
+    "description": "A popular legume used in Nigerian bean dishes, moi moi, akara, and bean porridge.",
+    "markets": ["Mile 12 Market", "Daleko Market", "Dawanau Market"]
+  },
+  {
+    "id": 40,
+    "name": "Carrot",
+    "category": "Fresh Vegetables",
+    "season": "Harmattan",
+    "picture": "https://i.pinimg.com/736x/df/9c/52/df9c5284581f8482e12fa0cc227e6329.jpg",
+    "description": "A crunchy root vegetable commonly eaten fresh or added to soups, stews, and salads.",
+    "markets": ["Mile 12 Market", "Wuse Market", "Oyingbo Market"]
+  }
+],
   "chatbotLogic": {
     "greeting": "Hi! I'm the FreshFind Assistant. What would you like to find today?",
     "quickReplies": ["Find a market near me", "What's open today?", "Where can I find tomatoes?", "What's in season?"],

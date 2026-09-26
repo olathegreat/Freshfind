@@ -10,6 +10,22 @@
   margin-bottom: 1.5rem;
   color: var(--dark-green);
 }
+.page-header-section {
+  background:url(https://res.cloudinary.com/tummi9le/image/upload/v1790337635/Breadcrumbs_1.png)no-repeat center center;
+  padding: 4rem 0;
+  text-align: center;
+  background-size: cover;
+}
+.page-title{
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  color: var(--white);
+}
+.page-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--white);
+}
 
 .about-text p {
   font-size: 1.05rem;
@@ -110,6 +126,8 @@
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .team-leaf {
@@ -126,6 +144,25 @@
 
 .cta-box h3 {
   color: var(--dark-green);
+}
+.team-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 0.5rem;
+  transition:all 0.3s ease-in-out;
+}
+.team-icon:hover .team-member {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+.team-member {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  gap: 0.5rem;
 }
 
 /* Responsive */
