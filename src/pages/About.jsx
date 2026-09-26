@@ -1,16 +1,11 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaBookOpen, FaCalendarAlt, FaUsers } from "react-icons/fa";
 import "./About.css";
 
 const About = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="about-page">
-      <div className="page-header-section">
+      <div id="about" className="page-header-section">
         <div className="container about-hero-inner animate-fade-up">
           <span className="badge">About FreshFind</span>
           <h1 className="page-title">
@@ -63,7 +58,7 @@ const About = () => {
       </div>
 
       {/* Our Mission */}
-      <div className="mission-section section">
+      <div id="mission" className="mission-section section">
         <div className="container animate-fade-up">
           <h2>Our Mission</h2>
           <p className="mission-text">
@@ -112,7 +107,7 @@ const About = () => {
 
       {/* Team & CTA */}
       <div className="container section">
-        <div className="team-cta-container animate-fade-up">
+        <div id="team" className="team-cta-container animate-fade-up">
           <div className="team-info">
             <h2>Meet the Team</h2>
             <p>

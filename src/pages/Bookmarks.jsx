@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { FiDownload } from "react-icons/fi";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import "./Bookmarks.css";
 import bookmarkimage from "../assets/bookmark-hero.png";
 import marketData from "../data/freshfindData.json";
@@ -356,40 +358,116 @@ function BookmarkIcon() {
 }
 
 export default function Bookmarks() {
-  const { bookmarkedIds, toggleBookmark } = useBookmarks();
+  const {
+    bookmarkedIds,
+    bookmarkedProduceIds,
+    toggleBookmark,
+    toggleProduceBookmark,
+    notes,
+    updateNote,
+  } = useBookmarks();
+  const [activeType, setActiveType] = useState("All");
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState("recent");
-  const pageItems = useMemo(() => {
+  const allItems = useMemo(() => {
     const sourceMarkets = marketData.markets.length
       ? marketData.markets
       : markets;
-    const saved = sourceMarkets.filter((market) =>
-      bookmarkedIds.includes(market.id),
-    );
-    const filtered =
-      activeCategory === "All"
-        ? saved
-        : saved.filter((market) =>
-            getDerivedCategories(market).includes(activeCategory),
-          );
+    return [
+      ...sourceMarkets
+        .filter((market) => bookmarkedIds.includes(market.id))
+        .map((item) => ({ ...item, contentType: "market" })),
+      ...marketData.produce
+        .filter((item) => bookmarkedProduceIds.includes(item.id))
+        .map((item) => ({ ...item, contentType: "produce" })),
+    ];
+  }, [bookmarkedIds, bookmarkedProduceIds]);
+
+  const pageItems = useMemo(() => {
+    const filtered = allItems.filter((item) => {
+      if (activeType === "Markets" && item.contentType !== "market")
+        return false;
+      if (activeType === "Produce" && item.contentType !== "produce")
+        return false;
+      if (activeCategory === "All") return true;
+      if (item.contentType === "market") {
+        return getDerivedCategories(item).some((category) =>
+          category
+            .toLowerCase()
+            .includes(activeCategory.toLowerCase().replace(/s$/, "")),
+        );
+      }
+      return item.category
+        .toLowerCase()
+        .includes(activeCategory.toLowerCase().replace(/s$/, ""));
+    });
 
     if (sortBy === "az") {
-      return filtered.sort((marketA, marketB) =>
-        marketA.name.localeCompare(marketB.name),
+      return filtered.sort((itemA, itemB) =>
+        itemA.name.localeCompare(itemB.name),
       );
     }
     if (sortBy === "nextOpen") {
-      return filtered.sort((marketA, marketB) => {
-        const daysA = daysUntilNextOpen(marketA.days || []);
-        const daysB = daysUntilNextOpen(marketB.days || []);
-        return daysA - daysB || marketA.name.localeCompare(marketB.name);
+      return filtered.sort((itemA, itemB) => {
+        const daysA =
+          itemA.contentType === "market"
+            ? daysUntilNextOpen(itemA.days || [])
+            : Infinity;
+        const daysB =
+          itemB.contentType === "market"
+            ? daysUntilNextOpen(itemB.days || [])
+            : Infinity;
+        return daysA - daysB || itemA.name.localeCompare(itemB.name);
       });
     }
-    return filtered.sort(
-      (marketA, marketB) =>
-        bookmarkedIds.indexOf(marketB.id) - bookmarkedIds.indexOf(marketA.id),
-    );
-  }, [activeCategory, bookmarkedIds, sortBy]);
+    return filtered.sort((itemA, itemB) => {
+      const orderA =
+        itemA.contentType === "market"
+          ? bookmarkedIds.indexOf(itemA.id)
+          : bookmarkedProduceIds.indexOf(itemA.id);
+      const orderB =
+        itemB.contentType === "market"
+          ? bookmarkedIds.indexOf(itemB.id)
+          : bookmarkedProduceIds.indexOf(itemB.id);
+      return orderB - orderA;
+    });
+  }, [
+    activeCategory,
+    activeType,
+    allItems,
+    bookmarkedIds,
+    bookmarkedProduceIds,
+    sortBy,
+  ]);
+
+  const exportBookmarks = () => {
+    const text = ["FreshFind saved recommendations", ""]
+      .concat(
+        allItems.map((item) => {
+          const note = notes[`${item.contentType}:${item.id}`];
+          const detail =
+            item.contentType === "market"
+              ? item.location
+              : `${item.category} | available at ${(item.markets || []).join(", ")}`;
+          return [
+            `${item.contentType === "market" ? "Market" : "Produce"}: ${item.name}`,
+            detail,
+            item.description || "",
+            note ? `Personal note: ${note}` : "",
+          ]
+            .filter(Boolean)
+            .join("\n");
+        }),
+      )
+      .join("\n\n");
+    const file = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(file);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "freshfind-bookmarks.txt";
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <main className="bookmarks-page">
@@ -407,8 +485,10 @@ export default function Bookmarks() {
                 when you're ready to shop.
               </p>
               <div className="saved-hero__count">
-                <strong>{bookmarkedIds.length}</strong>
-                <span>saved markets</span>
+                <strong>
+                  {bookmarkedIds.length + bookmarkedProduceIds.length}
+                </strong>
+                <span>saved items</span>
               </div>
             </div>
           </div>
@@ -418,8 +498,28 @@ export default function Bookmarks() {
         </div>
       </section>
 
-      <section className="saved-toolbar" aria-label="Filter saved markets">
+      <section
+        className="saved-toolbar"
+        aria-label="Filter and export saved items"
+      >
         <div className="saved-toolbar__inner">
+          <div
+            className="saved-type-filters"
+            role="group"
+            aria-label="Saved content type"
+          >
+            {["All", "Markets", "Produce"].map((type) => (
+              <button
+                className={`saved-category${activeType === type ? " is-active" : ""}`}
+                type="button"
+                key={type}
+                aria-pressed={activeType === type}
+                onClick={() => setActiveType(type)}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
           <div
             className="saved-categories"
             role="group"
@@ -451,85 +551,135 @@ export default function Bookmarks() {
               <option value="az">Name: A to Z</option>
             </select>
           </label>
+          <button
+            className="saved-export"
+            type="button"
+            onClick={exportBookmarks}
+            disabled={!allItems.length}
+          >
+            <FiDownload aria-hidden="true" /> Export list
+          </button>
         </div>
       </section>
 
-      <section className="saved-markets" aria-label="Saved markets">
+      <section
+        className="saved-markets"
+        aria-label="Saved market and produce recommendations"
+      >
         <div className="md-grid">
-          {pageItems.map((market) => {
-            const derivedCategories = getDerivedCategories(market);
-            const area = market.area || market.location.split(",")[0].trim();
-            const isBookmarked = bookmarkedIds.includes(market.id);
+          {pageItems.map((item) => {
+            const isMarket = item.contentType === "market";
+            const isBookmarked = isMarket
+              ? bookmarkedIds.includes(item.id)
+              : bookmarkedProduceIds.includes(item.id);
+            const noteKey = `${item.contentType}:${item.id}`;
+            const shareText = `${item.name}${isMarket ? `, ${item.location}` : ` (${item.category})`} - saved with FreshFind`;
+            const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
 
             return (
-              <article className="md-card" key={market.id}>
+              <article className="md-card saved-content-card" key={noteKey}>
                 <div className="md-card-image">
-                  <span className="md-badge">WHOLESALE &amp; FRESH</span>
-                  <img src={market.image} alt={market.name} loading="lazy" />
+                  <span className="md-badge">
+                    {isMarket ? "MARKET" : item.category.toUpperCase()}
+                  </span>
+                  <img
+                    src={isMarket ? item.image : item.picture}
+                    alt={item.name}
+                    loading="lazy"
+                  />
                   <button
                     className={`md-bookmark${isBookmarked ? " is-bookmarked" : ""}`}
                     type="button"
-                    aria-label={`${isBookmarked ? "Remove" : "Save"} ${market.name} ${isBookmarked ? "from" : "to"} bookmarks`}
+                    aria-label={`${isBookmarked ? "Remove" : "Save"} ${item.name} ${isBookmarked ? "from" : "to"} bookmarks`}
                     aria-pressed={isBookmarked}
-                    onClick={() => toggleBookmark(market)}
+                    onClick={() =>
+                      isMarket
+                        ? toggleBookmark(item)
+                        : toggleProduceBookmark(item)
+                    }
                   >
                     <BookmarkIcon />
                   </button>
                 </div>
                 <div className="md-card-body">
                   <div className="md-card-top">
-                    <h2>{market.name}</h2>
-                    {sortBy === "nextOpen" && (
-                      <span className="md-status-tag">
-                        {market.openInDays === 0
-                          ? "Open today"
-                          : market.openInDays === 1
-                            ? "Opens tomorrow"
-                            : market.openInDays === Infinity
-                              ? "Hours vary"
-                              : typeof market.openInDays === "number"
-                                ? `Opens in ${market.openInDays}d`
-                                : "Hours vary"}
-                      </span>
-                    )}
-                    {sortBy === "nearMe" &&
-                      typeof market.distanceKm === "number" && (
-                        <span className="md-status-tag">
-                          ~{Math.round(market.distanceKm)} km away
-                        </span>
-                      )}
-                    {sortBy === "az" && (
-                      <span className="md-area-tag">{area}</span>
-                    )}
+                    <h2>{item.name}</h2>
                   </div>
-                  <p className="md-card-location">{market.location}</p>
-
-                  <div className="md-card-meta">
-                    <div>
-                      <span className="md-meta-label">When to go</span>
-                      <span className="md-meta-value">
-                        {formatDayRange(market.days)} · {market.hours}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="md-meta-label">Good for</span>
-                      <span className="md-meta-value">
-                        {derivedCategories.length
-                          ? derivedCategories.slice(0, 2).join(", ")
-                          : (market.availableProduce || [])
+                  <p className="md-card-location">
+                    {isMarket
+                      ? item.location
+                      : `${item.category} · ${item.season} season`}
+                  </p>
+                  {isMarket ? (
+                    <div className="md-card-meta">
+                      <div>
+                        <span className="md-meta-label">When to go</span>
+                        <span className="md-meta-value">
+                          {formatDayRange(item.days)} · {item.hours}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="md-meta-label">Good for</span>
+                        <span className="md-meta-value">
+                          {getDerivedCategories(item).slice(0, 2).join(", ") ||
+                            (item.availableProduce || [])
                               .slice(0, 2)
                               .join(", ")}
-                      </span>
+                        </span>
+                      </div>
                     </div>
+                  ) : (
+                    <>
+                      <p className="md-card-tip">{item.description}</p>
+                      <p className="md-card-tip">
+                        <strong>Markets:</strong>{" "}
+                        {(item.markets || []).join(", ")}
+                      </p>
+                    </>
+                  )}
+                  <label className="saved-note">
+                    Personal note (this session)
+                    <textarea
+                      value={notes[noteKey] || ""}
+                      onChange={(event) =>
+                        updateNote(
+                          item.contentType,
+                          item.id,
+                          event.target.value,
+                        )
+                      }
+                      placeholder="Add a reminder or recommendation"
+                    />
+                  </label>
+                  <div className="saved-card-actions">
+                    <Link
+                      to={
+                        isMarket
+                          ? `${MARKET_DETAIL_BASE_PATH}/${item.id}`
+                          : "/produce"
+                      }
+                      className="md-view-link"
+                    >
+                      {isMarket ? "View market" : "View produce guide"}{" "}
+                      <span aria-hidden="true">↗</span>
+                    </Link>
+                    <a
+                      href={shareUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Share ${item.name} on WhatsApp`}
+                    >
+                      <FaWhatsapp /> WhatsApp
+                    </a>
+                    <a
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.origin)}&quote=${encodeURIComponent(shareText)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Share ${item.name} on Facebook`}
+                    >
+                      <FaFacebookF /> Facebook
+                    </a>
                   </div>
-
-                  <p className="md-card-tip">Go early for the widest choice.</p>
-                  <Link
-                    to={`${MARKET_DETAIL_BASE_PATH}/${market.id}`}
-                    className="md-view-link"
-                  >
-                    View market <span aria-hidden="true">↗</span>
-                  </Link>
                 </div>
               </article>
             );
@@ -537,14 +687,22 @@ export default function Bookmarks() {
           {pageItems.length === 0 && (
             <div className="saved-empty">
               <h2>
-                {bookmarkedIds.length
-                  ? "No saved markets in this category"
-                  : "No markets saved yet"}
+                {allItems.length
+                  ? "No saved items match these filters"
+                  : "No bookmarks yet"}
               </h2>
-              <p>Save a market to keep it close at hand.</p>
-              <Link to="/markets" className="saved-empty__link">
-                Browse markets
-              </Link>
+              <p>
+                Bookmark markets or produce from their guide cards to collect
+                recommendations.
+              </p>
+              <div className="saved-empty-links">
+                <Link to="/markets" className="saved-empty__link">
+                  Browse markets
+                </Link>
+                <Link to="/produce" className="saved-empty__link">
+                  Browse produce
+                </Link>
+              </div>
             </div>
           )}
         </div>

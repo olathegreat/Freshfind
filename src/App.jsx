@@ -23,10 +23,30 @@ import Bookmarks from "./pages/Bookmarks";
 import { BookmarkProvider } from "./context/BookmarkContext";
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const targetId = decodeURIComponent(hash.slice(1));
+    let attempts = 0;
+    let timeoutId;
+    const scrollToTarget = () => {
+      const target = document.getElementById(targetId);
+      if (!target && attempts < 20) {
+        attempts += 1;
+        timeoutId = window.setTimeout(scrollToTarget, 50);
+        return;
+      }
+      if (!target) return;
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: targetTop, behavior: "instant" });
+    };
+    timeoutId = window.setTimeout(scrollToTarget, 0);
+    return () => window.clearTimeout(timeoutId);
+  }, [pathname, hash]);
   return null;
 };
 

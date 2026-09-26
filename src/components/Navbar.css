@@ -531,6 +531,103 @@ input {
   color: var(--green);
 }
 
+.footer-socials {
+  display: flex;
+  gap: 9px;
+  margin-top: 17px;
+}
+
+.footer-socials a {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.footer-socials a:hover {
+  background: #fff;
+  color: #2e7d32;
+}
+
+.footer-newsletter {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.footer-newsletter__inner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.footer-newsletter__copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.footer-newsletter__copy h2 {
+  margin: 0 0 3px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.footer-newsletter__copy p,
+.footer-newsletter__success {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 12px;
+}
+
+.footer-newsletter__form {
+  display: flex;
+  width: min(100%, 440px);
+  min-height: 42px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.footer-newsletter__form input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 13px;
+  border: 0;
+  outline: 0;
+  color: #26372b;
+  font: inherit;
+  font-size: 13px;
+}
+
+.footer-newsletter__form button {
+  display: inline-flex;
+  min-width: 112px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: #1b5e20;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer-newsletter__form button:hover {
+  background: #154a19;
+}
+
+.footer-newsletter__success {
+  flex: 0 0 auto;
+}
+
 .footer-bottom {
   background: transparent;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -539,8 +636,145 @@ input {
   text-align: center;
 }
 
+.footer .footer-bottom {
+  width: 100%;
+  max-width: none;
+  padding-right: max(15px, calc((100% - 1080px) / 2));
+  padding-left: max(15px, calc((100% - 1080px) / 2));
+}
+
 .footer-bottom p {
   color: rgba(255, 255, 255, 0.72);
+}
+
+.bookmark-toast {
+  position: fixed;
+  z-index: 1500;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  max-width: min(420px, calc(100vw - 32px));
+  min-height: 54px;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px 10px 16px;
+  border: 1px solid #c6e3cb;
+  border-left: 4px solid #2e7d32;
+  border-radius: 8px;
+  background: #fff;
+  color: #21452b;
+  box-shadow: 0 10px 30px rgba(17, 54, 28, 0.18);
+  font-size: 14px;
+  animation: toast-arrive 220ms ease-out both;
+}
+
+.bookmark-toast > svg {
+  flex: 0 0 auto;
+  color: #2e7d32;
+  font-size: 19px;
+}
+
+.bookmark-toast button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  place-items: center;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #59685c;
+  cursor: pointer;
+}
+
+.bookmark-toast button:hover {
+  background: #edf7ed;
+}
+
+@keyframes toast-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.saved-note {
+  display: grid;
+  gap: 5px;
+  margin-top: 12px;
+  color: #65726c;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.saved-note textarea {
+  width: 100%;
+  min-height: 58px;
+  resize: vertical;
+  padding: 8px 9px;
+  border: 1px solid #dce5dc;
+  border-radius: 6px;
+  color: #344f43;
+  font: inherit;
+  font-size: 12px;
+}
+
+.saved-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 9px;
+}
+
+.saved-card-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #287445;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.saved-card-actions a:hover {
+  color: #164c2a;
+  text-decoration: underline;
+}
+
+.saved-export {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid #2e7d32;
+  border-radius: 6px;
+  background: #fff;
+  color: #2e7d32;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.saved-export:hover {
+  background: #edf7ed;
+}
+
+@media (max-width: 600px) {
+  .bookmark-toast {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .saved-export {
+    justify-content: center;
+  }
 }
 
 /* =====================================================
@@ -670,6 +904,16 @@ input {
 
   .footer-intro {
     grid-column: 1 / -1;
+  }
+
+  .footer-newsletter__inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-newsletter__copy,
+  .footer-newsletter__form {
+    flex: 1 1 100%;
   }
 }
 

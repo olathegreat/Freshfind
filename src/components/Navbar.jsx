@@ -45,7 +45,8 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-  const { bookmarkedIds } = useBookmarks();
+  const { bookmarkedIds, bookmarkedProduceIds } = useBookmarks();
+  const bookmarkCount = bookmarkedIds.length + bookmarkedProduceIds.length;
   const isMenuOpen = menuPath === location.pathname;
 
   const submitSearch = (event) => {
@@ -163,12 +164,12 @@ const Navbar = () => {
               <Link
                 to="/bookmarks"
                 className="bookmark-nav-link"
-                aria-label={`Saved markets: ${bookmarkedIds.length}`}
-                title={`${bookmarkedIds.length} saved markets`}
+                aria-label={`Saved items: ${bookmarkCount}`}
+                title={`${bookmarkCount} saved items`}
               >
                 <FiBookmark aria-hidden="true" />
                 <span className="bookmark-nav-count" aria-hidden="true">
-                  {bookmarkedIds.length > 99 ? "99+" : bookmarkedIds.length}
+                  {bookmarkCount > 99 ? "99+" : bookmarkCount}
                 </span>
               </Link>
               <div className="visitor" aria-label="Visitor count">

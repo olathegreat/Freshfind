@@ -191,7 +191,6 @@ function Home() {
   const { bookmarkedIds, toggleBookmark } = useBookmarks();
 
   const [activeFaq, setActiveFaq] = useState(0);
-  const [email, setEmail] = useState("");
   const [now, setNow] = useState(new Date());
 
   // Ticks every second so the "Opened Now" countdowns stay live.
@@ -257,13 +256,6 @@ function Home() {
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
-  };
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    console.log("Subscribed:", email);
-    setEmail("");
   };
 
   return (
@@ -399,7 +391,7 @@ function Home() {
         </section>
 
         {/* ================= OPENED NOW ================= */}
-        <section className="opened-section section-container">
+        <section id="opened-now" className="opened-section section-container">
           <div className="section-heading">
             <h2>Opened Now</h2>
 
@@ -464,7 +456,7 @@ function Home() {
         </section>
 
         {/* ================= POPULAR PRODUCE ================= */}
-        <section className="produce-section">
+        <section id="popular-produce" className="produce-section">
           <div className="section-container">
             <div className="section-heading">
               <h2>Popular Produces</h2>
@@ -511,7 +503,7 @@ function Home() {
         </section>
 
         {/* ================= POPULAR MARKETS ================= */}
-        <section className="markets-section section-container">
+        <section id="popular-markets" className="markets-section section-container">
           <div className="section-heading">
             <h2>Popular Markets</h2>
 
@@ -623,50 +615,6 @@ function Home() {
               <div className="assistant-button">
                 <FiMessageCircle />
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ================= NEWSLETTER ================= */}
-        <section className="newsletter-section">
-          <div className="newsletter-container">
-            <div className="newsletter-text">
-              <h3>Subscribe our Newsletter</h3>
-
-              <p>
-                Get latest updates on fresh produce and market updates directly
-                to your email.
-              </p>
-            </div>
-
-            <form className="newsletter-form" onSubmit={handleSubscribe}>
-              <input
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-
-              <button type="submit">Subscribe</button>
-            </form>
-
-            <div className="social-icons">
-              <a href="#" aria-label="Facebook">
-                f
-              </a>
-
-              <a href="#" aria-label="Twitter">
-                t
-              </a>
-
-              <a href="#" aria-label="Pinterest">
-                p
-              </a>
-
-              <a href="#" aria-label="Instagram">
-                ◎
-              </a>
             </div>
           </div>
         </section>
