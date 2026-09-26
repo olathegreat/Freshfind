@@ -3,7 +3,9 @@ import { FaComments, FaBars, FaTimes } from 'react-icons/fa';
 import Chatbot from './Chatbot';
 import './Navbar.css';
 import logo from "../assets/freshfind-logo.png";
+import countsIcon from "../assets/counts-icon.png"
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { LuPhoneCall } from 'react-icons/lu';
 
 
 const navItems = [
@@ -142,7 +144,9 @@ const Navbar = () => {
               <Link to="/bookmarks" className='heart'>♡</Link>
               {/* <a className="heart" href="#" aria-label="Wishlist">♡</a> */}
               <div className="visitor" aria-label="Visitor count">
-                <span className="visitor-icon">👥</span>
+                <span className="visitor-icon">
+                  <img src={countsIcon} alt=''/>
+                </span>
                 <span>
                   <small>Visitor Count</small>
                   <strong>{visitorCount.toLocaleString()}</strong>
@@ -176,7 +180,7 @@ const Navbar = () => {
               </ul>
             </nav>
             <a className="phone-link" href="tel:+2348796001234">
-              <span aria-hidden="true">☎</span> 234 8796 1234
+              <span aria-hidden="true"><LuPhoneCall/></span> 234 8796 1234
             </a>
             <button
               className="nav-toggle"
@@ -222,7 +226,7 @@ const Navbar = () => {
           ))}
         </ul>
         <a className="nav-drawer-phone" href="tel:+2348796001234">
-          <span aria-hidden="true">☎</span> 234 8796 1234
+          <span aria-hidden="true"><LuPhoneCall/></span> 234 8796 1234
         </a>
       </aside>
 

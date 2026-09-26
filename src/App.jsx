@@ -14,14 +14,9 @@ import SeasonalPicks from './pages/SeasonalPicks';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Error404 from './pages/Error404';
+import Bookmarks from './pages/Bookmarks';
 
-const Bookmarks = () => (
-  <div className="container section" style={{ minHeight: '60vh' }}>
-    <h2>Your Saved Markets & Produce</h2>
-    <p>Keep track of the markets and produce you want to explore later.</p>
-    <p style={{ marginTop: '2rem', color: '#666' }}>Bookmarking functionality coming soon.</p>
-  </div>
-);
+
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();

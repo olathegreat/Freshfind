@@ -35,7 +35,7 @@
     },
     {
       "id": 4,
-      "name": "Fruit Market, Ilupeju",
+      "name": "Fruit Market",
       "location": "Ilupeju, Lagos",
       "hours": "7:30 AM – 6:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -45,7 +45,7 @@
     },
     {
       "id": 5,
-      "name": "Masha Fruit Farmers Market",
+      "name": "Masha Farmers Market",
       "location": "Surulere, Lagos",
       "hours": "6:00 AM – 4:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -109,7 +109,7 @@
       "location": "oja-oba, ibadan",
       "hours": "9:00 AM – 7:00 PM",
       "days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "description": "A market that connects local farmers with the community, offering fresh produce and artisanal goods.",
+      "description": "A market offering fresh produce and artisanal goods.",
       "availableProduce": ["Tomatoes", "Carrots", "Leafy Greens", "Fresh Herbs"],
       "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790288230/market10.png"
     },
@@ -119,7 +119,7 @@
       "location": "Onitsha, Anambra State",
       "hours": "9:00 AM – 6:00 PM",
       "days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "description": "A weekend market with a variety of fresh produce, baked goods, and local crafts.",
+      "description": "A  market of fresh produce, baked goods, and local crafts.",
       "availableProduce": ["Onions", "Cabbage", "Plantains", "Pineapples"],
       "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790289129/Market11.png"
     },
@@ -129,7 +129,7 @@
       "location": "Garik, Abuja",
       "hours": "7:00 AM – 3:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "description": "The Garki International Market is one of the most prominent, largest, and longest-standing commercial hubs in the Federal Capital Territory. It is a bustling marketplace that serves as a central trading point for various goods and services, attracting both local residents and visitors from different parts of Nigeria.",
+      "description": " one of the most prominent, largest, and longest-standing commercial hubs in the FCT.",
       "availableProduce": ["Corn", "pomegranates", "Guava", "Yams"],
       "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790290828/Market12.png"
     },
@@ -149,7 +149,7 @@
       "location": "Dawanau, Kano",
       "hours": "10:00 AM – 7:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"],
-      "description": "Dawanau International Grains Market in Kano State is the largest agricultural commodity and grain market in West Africa.",
+      "description": "largest agricultural commodity and grain market in West Africa.",
       "availableProduce": ["Corn", "pomegranates", "Guava", "Yams"],
       "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790292288/Market14.png"
     },
@@ -169,13 +169,13 @@
       "location": "Portharcourt, Rivers State",
       "hours": "8:00 AM – 4:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "description": "The Oil Mill Market is a famous, community-owned weekly market in Port Harcourt located at Eleme Junction (Rumuokwurusi Junction) along Aba Road. It is a vibrant and bustling marketplace that serves as a central hub for trade and commerce in the region. The market is known for its diverse range of goods, including fresh produce, clothing, household items, electronics, and various other products. It attracts both local residents and visitors from neighboring areas, making it a lively and dynamic shopping destination.",
+      "description": "The Oil Mill Market is a famous, community-owned weekly market in Port Harcourt",
       "availableProduce": ["Tomatoes", "Habanero Peppers", "Leafy Greens", "Fresh Herbs"],
       "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790329005/Market16.png"
     },
     {
       "id": 18,
-      "name": "Fruit & Vegetable Market, Onitsha",
+      "name": "Fruit & Vegetable Mkt",
       "location": "Onitsha, Anambra State",
       "hours": "9:00 AM – 3:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -199,7 +199,7 @@
       "location": "Maitama, Abuja",
       "hours": "7:30 AM – 6:00 PM",
       "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "description": "The Maitama Farmers Market on IBB Way and Yedseram Crescent in Maitama, Abuja, is a clean, organized open-air market known for a wide variety of fresh local and exotic fruits, vegetables, and gourmet groceries.",
+      "description": "a clean, organized open-air market known for a wide variety of fresh local and exotic fruits, vegetables, and gourmet groceries.",
       "availableProduce": ["pomegranates", "Coconuts", "Leafy Greens", "Fresh Herbs"],
       "image": "https://res.cloudinary.com/tummi9le/image/upload/v1790330859/Market19.png"
     },

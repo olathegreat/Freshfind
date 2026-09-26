@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import { BiSearch } from "react-icons/bi";
 import data from "../data/freshfindData.json";
 import "./MarketDirectory.css";
+import { LuSettings, LuSettings2 } from "react-icons/lu";
+import { GoArrowUpRight } from "react-icons/go";
 
 const PAGE_SIZE = 12;
 
@@ -19,8 +21,7 @@ const DAY_ABBR = {
 };
 const ALL_DAYS = Object.keys(DAY_ABBR);
 
-// Normalizes messy "location" strings ("Bodija, Ibadan", "Onitsha, Anambra State")
-// down to a single Area label we can filter/group by.
+
 const AREA_ALIASES = {
   "anambra state": "Anambra",
   "anambra": "Anambra",
@@ -39,8 +40,6 @@ function getArea(location = "") {
   return AREA_ALIASES[last] || parts[parts.length - 1] || "Other";
 }
 
-// Builds a produceName -> category lookup from the produce list so we can
-// tell what a market is "good for" just from its availableProduce array.
 function buildProduceCategoryMap(produce = []) {
   const map = {};
   produce.forEach((item) => {
@@ -57,9 +56,6 @@ function getMarketCategories(market, produceCategoryMap) {
   return [...new Set([...fromExplicit, ...fromProduce])];
 }
 
-// Approximate city-centre coordinates per Area, used for "Market Near you".
-// We don't have per-market lat/lng in the data, so distance is city-level,
-// not pin-precise — good enough to rank areas by proximity to the user.
 const AREA_COORDS = {
   Lagos: { lat: 6.5244, lng: 3.3792 },
   Ibadan: { lat: 7.3775, lng: 3.947 },
@@ -346,7 +342,7 @@ function MarketDirectory() {
               className="md-filter-btn"
               onClick={() => setMobileFiltersOpen((v) => !v)}
             >
-              Filter <span className="md-filter-icon">⚙</span>
+              Filter <span className="md-filter-icon"><LuSettings2/></span>
             </button>
 
             <div className="md-sidebar-block">
@@ -576,7 +572,7 @@ function MarketDirectory() {
                       to={`${MARKET_DETAIL_BASE_PATH}/${market.id}`}
                       className="md-view-link"
                     >
-                      View market <span>↗</span>
+                      View market <span><GoArrowUpRight/></span>
                     </Link>
                   </div>
                 </div>

@@ -1,12 +1,16 @@
 
 import './Navbar.css';
 import logo from "../assets/freshfind-logo.png";
+import logoWhite from "../assets/logowhite.png"
+
+
+
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-intro">
-          <img src={logo} alt="FreshFind" className="footer-logo" />
+          <img src={logoWhite} alt="FreshFind" className="footer-logo" />
           <p>Your local market companion. Find the best<br />of produce directly from farmers with no hassle.</p>
           <div className="footer-contact">
             <a href="tel:+23482356789">(234) 823-56789</a>
