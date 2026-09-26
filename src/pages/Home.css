@@ -670,16 +670,17 @@
 
 .faq-container {
   width: min(1120px, calc(100% - 40px));
-  min-height: 340px;
+  min-height: 500px;
   margin: 0 auto;
 
   display: grid;
   grid-template-columns: 1fr 0.85fr;
   /* gap: 40px; */
-  align-items: end;
+  align-items: stretch;
 }
 
 .faq-content {
+  min-height: 500px;
   padding: 45px 0 38px;
 }
 
@@ -693,6 +694,7 @@
 .faq-list {
   width: 100%;
   max-width: 560px;
+  min-height: 370px;
 }
 
 .faq-item {
@@ -1135,7 +1137,12 @@
   }
 
   .faq-content {
+    min-height: 550px;
     padding: 35px 0 10px;
+  }
+
+  .faq-list {
+    min-height: 450px;
   }
 
   .faq-content h2 {

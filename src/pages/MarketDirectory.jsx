@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import data from "../data/freshfindData.json";
 import "./MarketDirectory.css";
@@ -163,7 +163,8 @@ function MarketDirectory() {
   const [activeArea, setActiveArea] = useState(null);
   const [activeDay, setActiveDay] = useState(null);
   const [activeProduceType, setActiveProduceType] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search") || "";
   const [sortBy, setSortBy] = useState("az");
   const [page, setPage] = useState(1);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -173,6 +174,13 @@ function MarketDirectory() {
   const [locating, setLocating] = useState(false);
   const [locationError, setLocationError] = useState(null);
   const sortRef = useRef(null);
+
+  const setSearchTerm = (value) => {
+    const nextParams = new URLSearchParams(searchParams);
+    if (value.trim()) nextParams.set("search", value);
+    else nextParams.delete("search");
+    setSearchParams(nextParams, { replace: true });
+  };
 
   // Close the custom sort dropdown on outside click.
   useEffect(() => {
@@ -235,11 +243,38 @@ function MarketDirectory() {
       items = items.filter(
         (m) =>
           m.name.toLowerCase().includes(term) ||
-          m.location.toLowerCase().includes(term),
+          m.location.toLowerCase().includes(term) ||
+          (m.availableProduce || []).some((item) =>
+            item.toLowerCase().includes(term),
+          ) ||
+          m.derivedCategories.some((category) =>
+            category.toLowerCase().includes(term),
+          ) ||
+          (m.description || "").toLowerCase().includes(term),
       );
     }
 
-    if (sortBy === "nextOpen") {
+    if (searchTerm.trim()) {
+      const term = searchTerm.trim().toLowerCase();
+      const getRelevance = (market) => {
+        const name = market.name.toLowerCase();
+        const produceNames = (market.availableProduce || []).map((item) =>
+          item.toLowerCase(),
+        );
+        if (name === term) return 0;
+        if (name.startsWith(term)) return 1;
+        if (name.includes(term)) return 2;
+        if (produceNames.some((item) => item.startsWith(term))) return 3;
+        if (produceNames.some((item) => item.includes(term))) return 4;
+        if (market.location.toLowerCase().includes(term)) return 5;
+        return 6;
+      };
+      items.sort(
+        (marketA, marketB) =>
+          getRelevance(marketA) - getRelevance(marketB) ||
+          marketA.name.localeCompare(marketB.name),
+      );
+    } else if (sortBy === "nextOpen") {
       items.sort((a, b) => {
         if (a.openInDays !== b.openInDays) return a.openInDays - b.openInDays;
         return a.name.localeCompare(b.name);
@@ -432,7 +467,8 @@ function MarketDirectory() {
                 <BiSearch className="md-search-icon" />
                 <input
                   type="text"
-                  placeholder="Search market by name or location"
+                  placeholder="Search by market name, location, or produce"
+                  aria-label="Search markets by name, location, or produce"
                   value={searchTerm}
                   onChange={(e) => {
                     setSearchTerm(e.target.value);

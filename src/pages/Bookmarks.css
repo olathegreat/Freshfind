@@ -28,7 +28,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: min(1120px, calc(100% - 40px));
+  width: min(1080px, calc(100% - 30px));
   height: 100%;
   margin: 0 auto;
 }
@@ -39,7 +39,7 @@
   display: flex;
   align-items: flex-start;
   gap: 22px;
-  margin-left: 10.5%;
+  margin-left: 0;
 }
 
 .saved-hero__icon {
@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: min(1120px, calc(100% - 40px));
+  width: min(1080px, calc(100% - 30px));
   min-height: 76px;
   margin: 0 auto;
 }
@@ -183,7 +183,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px 14px;
-  width: min(1120px, calc(100% - 40px));
+  width: min(1080px, calc(100% - 30px));
   margin: 0 auto;
 }
 
@@ -409,7 +409,7 @@
 
 @media (max-width: 900px) {
   .saved-hero__copy {
-    margin-left: 5%;
+    margin-left: 0;
   }
   .saved-hero__art {
     width: 43%;
@@ -445,7 +445,7 @@
   .saved-hero__inner,
   .saved-toolbar__inner,
   .md-grid {
-    width: calc(100% - 28px);
+    width: calc(100% - 24px);
   }
   .saved-hero__copy {
     gap: 11px;

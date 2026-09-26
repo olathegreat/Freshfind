@@ -18,6 +18,7 @@
 
 body {
   min-width: 320px;
+  overflow-x: clip;
   background: #f7f7f7;
   color: #333;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -43,7 +44,6 @@ input {
   flex-direction: column;
 }
 
-
 /* =========================
    CONTAINERS
 ========================= */
@@ -52,7 +52,6 @@ input {
   width: min(1080px, calc(100% - 30px));
   margin: 0 auto;
 }
-
 
 /* =========================
    UTILITY BAR
@@ -97,7 +96,6 @@ input {
   white-space: nowrap;
 }
 
-
 /* =========================
    HEADER
 ========================= */
@@ -119,7 +117,6 @@ input {
   gap: 30px;
 }
 
-
 /* =========================
    LOGO
 ========================= */
@@ -133,7 +130,6 @@ input {
   width: 172px;
   height: auto;
 }
-
 
 /* =========================
    DESKTOP SEARCH
@@ -180,7 +176,6 @@ input {
   padding: 0 30px;
 }
 
-
 /* =========================
    MOBILE SEARCH
 ========================= */
@@ -188,7 +183,6 @@ input {
 .search-form-mobile {
   display: none;
 }
-
 
 /* =========================
    HEADER ACTIONS
@@ -201,11 +195,41 @@ input {
   flex-shrink: 0;
 }
 
-.heart {
-  color: #333;
-  font-size: 26px;
-  font-weight: 300;
+.bookmark-nav-link {
+  position: relative;
+  display: grid;
+  width: 38px;
+  height: 40px;
+  place-items: center;
+  color: #2e7d32;
+  font-size: 24px;
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.bookmark-nav-link:hover {
+  color: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.bookmark-nav-count {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  display: grid;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #e94b43;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .visitor {
@@ -237,7 +261,6 @@ input {
   font-size: 13px;
   font-weight: 700;
 }
-
 
 /* =========================
    NAVIGATION
@@ -313,6 +336,9 @@ input {
   flex-shrink: 0;
 }
 
+.nav-mobile-note {
+  display: none;
+}
 
 /* =========================
    MOBILE NAV DRAWER
@@ -419,7 +445,6 @@ input {
   }
 }
 
-
 /* =========================
    PAGE CONTENT
 ========================= */
@@ -428,7 +453,6 @@ input {
   flex: 1;
   min-height: 330px;
 }
-
 
 /* =====================================================
    FOOTER
@@ -519,14 +543,12 @@ input {
   font-size: 9px;
 }
 
-
 /* =====================================================
    TABLET
    1024px
 ===================================================== */
 
 @media (max-width: 1024px) {
-
   .header-inner {
     gap: 20px;
   }
@@ -557,14 +579,12 @@ input {
   }
 }
 
-
 /* =====================================================
    TABLET / SMALL LAPTOP
    800px
 ===================================================== */
 
 @media (max-width: 800px) {
-
   .header-inner {
     min-height: 70px;
     gap: 20px;
@@ -631,6 +651,17 @@ input {
 
   .nav-toggle {
     display: flex;
+    order: 1;
+  }
+
+  .nav-mobile-note {
+    display: inline-flex;
+    align-items: center;
+    order: 0;
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 12px;
+    font-weight: 600;
   }
 
   .footer-grid {
@@ -643,14 +674,12 @@ input {
   }
 }
 
-
 /* =====================================================
    MOBILE
    600px
 ===================================================== */
 
 @media (max-width: 600px) {
-
   .container {
     width: calc(100% - 24px);
   }
@@ -683,7 +712,6 @@ input {
     padding-left: 10px;
   }
 
-
   /* Main header */
   .header-inner {
     width: calc(100% - 24px);
@@ -704,8 +732,10 @@ input {
     gap: 14px;
   }
 
-  .heart {
-    font-size: 24px;
+  .bookmark-nav-link {
+    width: 34px;
+    height: 36px;
+    font-size: 22px;
   }
 
   .visitor {
@@ -721,13 +751,11 @@ input {
     font-size: 8px;
   }
 
-
   /* Mobile search */
   .search-form-mobile {
     width: calc(100% - 24px);
     margin-bottom: 12px;
   }
-
 
   /* Footer */
   .footer-grid {
@@ -736,14 +764,12 @@ input {
   }
 }
 
-
 /* =====================================================
    SMALL PHONES
    480px
 ===================================================== */
 
 @media (max-width: 480px) {
-
   .utility-inner {
     font-size: 9px;
   }
@@ -791,14 +817,12 @@ input {
   }
 }
 
-
 /* =====================================================
    VERY SMALL PHONES
    360px
 ===================================================== */
 
 @media (max-width: 360px) {
-
   .header-inner {
     gap: 8px;
   }
@@ -828,7 +852,6 @@ input {
     font-size: 6px;
   }
 }
-
 
 /* =====================================================
    FLOATING CHATBOT
@@ -865,11 +888,9 @@ input {
   background-color: #157c2d;
 }
 
-
 /* Chatbot on mobile */
 
 @media (max-width: 600px) {
-
   .chatbot-launcher {
     width: 52px;
     height: 52px;
