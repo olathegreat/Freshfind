@@ -11,15 +11,27 @@
   color: var(--dark-green);
 }
 .page-header-section {
-  background:url(https://res.cloudinary.com/tummi9le/image/upload/v1790337635/Breadcrumbs_1.png)no-repeat center center;
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://res.cloudinary.com/tummi9le/image/upload/v1790337635/Breadcrumbs_1.png")
+      no-repeat center center / cover;
   padding: 4rem 0;
   text-align: center;
-  background-size: cover;
 }
-.page-title{
+
+.about-hero-inner {
+  width: min(1080px, calc(100% - 30px));
+  max-width: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.page-title {
   font-size: 2.5rem;
   margin-top: 1rem;
-  color: var(--white);
+  color: #bce8c3;
 }
 .page-subtitle {
   font-size: 1.25rem;
@@ -124,10 +136,11 @@
 
 .team-icons {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem 0.75rem;
   margin-top: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .team-leaf {
@@ -147,31 +160,69 @@
 }
 .team-icon {
   display: flex;
+  flex: 1 1 100px;
+  max-width: 132px;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  line-height: 0.5rem;
-  transition:all 0.3s ease-in-out;
+  gap: 0.35rem;
+  text-align: center;
+  line-height: 1.35;
+  transition: transform 0.3s ease;
 }
+
+.team-icon span:first-of-type {
+  color: var(--text-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.team-icon span:last-of-type {
+  color: var(--text-light);
+  font-size: 0.68rem;
+}
+
+.team-icon:hover {
+  transform: translateY(-3px);
+}
+
 .team-icon:hover .team-member {
-  transform: scale(1.05);
   box-shadow: var(--shadow-hover);
 }
 .team-member {
-  width: 80px;
-  height: 80px;
+  display: block;
+  width: 76px;
+  height: 76px;
+  flex: 0 0 auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
-  gap: 0.5rem;
+  object-position: center;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .about-grid, .team-cta-container {
+  .about-grid,
+  .team-cta-container {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
   .about-image {
     order: -1;
+  }
+
+  .about-hero-inner {
+    width: calc(100% - 24px);
+  }
+
+  .team-icons {
+    gap: 1rem 0.5rem;
+  }
+
+  .team-icon {
+    flex-basis: 92px;
   }
 }
