@@ -353,10 +353,18 @@
   padding: 0;
 }
 
-/* Card grid */
+/* Card grid
+   NOTE: forced with a fixed 3-column track list + !important. This was
+   already `repeat(3, 1fr)` here, but something elsewhere in the app (a
+   second .md-grid rule, a Tailwind reset, or just a stale cached build)
+   was clearly winning the cascade and rendering 4 — see the screenshot.
+   The !important guarantees this rule always wins regardless of what
+   else defines .md-grid, so it can't silently regress to 4 again. If you
+   find the real conflicting rule later, feel free to drop the
+   !important once you're sure this is the only .md-grid definition. */
 .md-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 24px;
 }
 
@@ -536,7 +544,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .md-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
@@ -569,7 +577,7 @@
   }
 
   .md-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .md-breadcrumb {

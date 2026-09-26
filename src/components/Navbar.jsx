@@ -231,12 +231,12 @@ const Navbar = () => {
       </aside>
 
       {/* Floating Chatbot Launcher */}
-      <button className="chatbot-launcher" onClick={() => setIsChatOpen(!isChatOpen)}>
+      {/* <button className="chatbot-launcher" onClick={() => setIsChatOpen(!isChatOpen)}>
         <FaComments size={24} />
-      </button>
+      </button> */}
 
       {/* Chatbot Component */}
-      <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      {/* <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} /> */}
     </>
   );
 };
