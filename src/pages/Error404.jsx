@@ -41,28 +41,17 @@ export default function Error404() {
 
   return (
     <div className="notfound-page">
-      
-
-      <div className="breadcrumb-banner">
-        {/* <div className="breadcrumb-inner">
-          <Link to="/" aria-label="Home">
-            🏠
-          </Link>
-          <span className="crumb-sep">›</span>
-          <span className="crumb-current">404 Error Page</span>
-        </div> */}
-      </div>
+      <div className="breadcrumb-banner"></div>
 
       <section className="notfound-content">
         <div className="illustration-wrap">
           <img className="errorimage" src={ErrorImage} alt="404image" />
-          
         </div>
 
         <h1>Oops! page not found</h1>
         <p>
           Looks like this page wandered off while looking for the freshest
-          produce! 
+          produce!
           <br />
           The page you&apos;re looking for doesn&apos;t exist, may have been
           moved, or the link might be incorrect.
@@ -92,18 +81,26 @@ export default function Error404() {
             />
             <button type="submit">Subscribe</button>
           </form>
-          {submitted && <span className="subscribed-note">Thanks — you're subscribed!</span>}
+          {submitted && (
+            <span className="subscribed-note">Thanks — you're subscribed!</span>
+          )}
 
           <div className="socials">
-            <a href="#" aria-label="Facebook"><FacebookIcon /></a>
-            <a href="#" aria-label="Twitter"><TwitterIcon /></a>
-            <a href="#" aria-label="Pinterest"><PinterestIcon /></a>
-            <a href="#" aria-label="Instagram"><InstagramIcon /></a>
+            <a href="#" aria-label="Facebook">
+              <FacebookIcon />
+            </a>
+            <a href="#" aria-label="Twitter">
+              <TwitterIcon />
+            </a>
+            <a href="#" aria-label="Pinterest">
+              <PinterestIcon />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <InstagramIcon />
+            </a>
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 }

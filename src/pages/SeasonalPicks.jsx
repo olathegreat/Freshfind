@@ -1,13 +1,10 @@
 import { useMemo } from "react";
+import { FiMapPin, FiClock, FiMessageCircle } from "react-icons/fi";
+import { PiPlant } from "react-icons/pi";
 import heroimage from "../assets/hero-image.png";
 import Chatbot from "../components/Chatbot";
 import freshfindData from "../data/freshfindData.json";
 import "./SeasonalPicks.css";
-
-
-
-
-
 
 // Nigeria has two broad seasons in this dataset: "Rainy" (~April–October)
 // and "Harmattan" (~November–March). We use the current month to decide
@@ -20,22 +17,22 @@ function getCurrentSeason(date = new Date()) {
 
 const FEATURES = [
   {
-    icon: "📍",
+    icon: <FiMapPin aria-hidden="true" />,
     title: "Find Nearby Markets",
     text: "Discover farmers' markets in your area",
   },
   {
-    icon: "🥦",
+    icon: <PiPlant aria-hidden="true" />,
     title: "Explore Fresh Produce",
     text: "See what produce is available at each market",
   },
   {
-    icon: "🕐",
+    icon: <FiClock aria-hidden="true" />,
     title: "Check market hours",
     text: "Know when your favorite markets are open.",
   },
   {
-    icon: "🤖",
+    icon: <FiMessageCircle aria-hidden="true" />,
     title: "FreshFind Assistant",
     text: "Get quick answers about markets and produce.",
   },
@@ -72,8 +69,6 @@ export default function Home() {
 
   return (
     <div className="home">
-      
-
       <section className="hero">
         <div className="hero-copy">
           <div className="eyebrow">WELCOME TO FRESHFIND</div>
@@ -87,7 +82,7 @@ export default function Home() {
           </a>
         </div>
         <div className="hero-visual" aria-hidden="true">
-          <img  src={heroimage} alt="hero-image" />
+          <img src={heroimage} alt="hero-image" />
         </div>
       </section>
 
@@ -126,7 +121,6 @@ export default function Home() {
         </div>
       </section>
 
-      
       <Chatbot />
     </div>
   );

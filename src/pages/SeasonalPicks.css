@@ -1,6 +1,4 @@
 :root {
-  width: 100%;
-  min-width: 0;
   --green: #2e7d32;
   --green-dark: #1b5e20;
   --accent: #4caf50;
@@ -12,7 +10,7 @@
 }
 
 .home {
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family, "Poppins"), sans-serif;
   color: var(--ink);
 }
 
@@ -111,6 +109,13 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.feature .icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--green);
+  stroke-width: 1.8;
 }
 
 .feature h3 {

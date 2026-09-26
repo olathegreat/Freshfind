@@ -9,7 +9,7 @@
 }
 
 .notfound-page {
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family, "Poppins"), sans-serif;
   color: var(--ink);
 }
 
@@ -21,19 +21,15 @@
   background: url(../assets/breadcrumbimg.jpg);
   /* Swap this for a real produce photo asset, e.g.:
      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url("/assets/breadcrumb-veg.jpg") center/cover; */
- 
 }
 
- .errorimage {
-  
+.errorimage {
   height: 350px;
   margin-bottom: 1.5rem;
   max-width: 750px;
   object-fit: contain;
   display: block;
-
-}   
-
+}
 
 .breadcrumb-inner {
   max-width: 1300px;
@@ -71,15 +67,13 @@
   position: relative;
   display: inline-block;
   margin-bottom: 1.5rem;
-
-
 }
 
 .digit {
   font-size: 170px;
   font-weight: 800;
   fill: var(--accent);
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family, "Poppins"), sans-serif;
 }
 .digit-o {
   fill: var(--accent-light);
@@ -105,8 +99,6 @@
 .peeker .hand {
   fill: #f2c4a0;
 }
-
-
 
 .notfound-content h1 {
   font-size: 2rem;
@@ -212,13 +204,10 @@
     max-width: 100%;
   }
   .errorimage {
-  
-height: 350px;
-  margin-bottom: 1.5rem;
-  max-width: 350px;
-  object-fit: contain;
-  display: block;
-
-}
-
+    height: 350px;
+    margin-bottom: 1.5rem;
+    max-width: 350px;
+    object-fit: contain;
+    display: block;
+  }
 }

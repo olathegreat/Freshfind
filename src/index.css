@@ -10,6 +10,7 @@
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
+  --font-family: "Poppins", sans-serif;
 }
 
 * {
@@ -19,7 +20,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif !important;
+  font-family: var(--font-family);
   background-color: var(--light-bg);
   color: var(--text-dark);
   line-height: 1.6;
@@ -28,6 +29,13 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 /* Typography */
@@ -113,6 +121,62 @@ p {
 }
 .delay-3 {
   animation-delay: 0.3s;
+}
+
+@keyframes heroContentArrive {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes ctaEmphasis {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.035);
+  }
+}
+
+.hero-content,
+.hero-copy,
+.hero-container,
+.page-header-section,
+.page-header,
+.md-hero,
+.pg-hero,
+.saved-hero,
+.detail-hero,
+.breadcrumb-banner,
+.page-header-section > *,
+.page-header > *,
+.md-breadcrumb,
+.pg-breadcrumb,
+.saved-hero__copy,
+.detail-hero-container,
+.notfound-content {
+  animation: heroContentArrive 650ms ease-out both;
+}
+
+.primary-btn,
+.small-green-btn,
+.market-btn,
+.btn-primary,
+.btn-secondary,
+.btn-home,
+.hero-copy .btn,
+.md-view-link,
+.pg-view-link,
+.saved-empty__link,
+.md-search-btn,
+.pg-search-btn {
+  animation: ctaEmphasis 900ms 180ms ease-in-out;
 }
 
 @keyframes contentFadeIn {

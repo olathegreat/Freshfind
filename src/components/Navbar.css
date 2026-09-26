@@ -21,7 +21,7 @@ body {
   overflow-x: clip;
   background: #f7f7f7;
   color: #333;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 a {
@@ -460,8 +460,8 @@ input {
 ===================================================== */
 
 .footer {
-  background: var(--footer);
-  color: #aaa;
+  background: #2e7d32;
+  color: rgba(255, 255, 255, 0.82);
   padding-top: 43px;
 }
 
@@ -484,7 +484,7 @@ input {
 }
 
 .footer-intro p {
-  color: #888;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 10px;
   line-height: 1.55;
   margin-bottom: 13px;
@@ -505,7 +505,7 @@ input {
 }
 
 .footer-contact span {
-  color: #777;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-column {
@@ -522,7 +522,7 @@ input {
 }
 
 .footer-column a {
-  color: #888;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 10px;
 }
 
@@ -532,19 +532,18 @@ input {
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--line);
+  background: #1b5e20;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   margin-top: 22px;
   padding: 15px 0 17px;
   text-align: center;
 }
 
 .footer-bottom p {
-  color: #777;
-  font-size: 9px;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 /* =====================================================
-   TABLET
    1024px
 ===================================================== */
 

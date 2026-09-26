@@ -8,7 +8,7 @@
   min-height: 100vh;
   color: var(--ink);
   background: #fbfcf9;
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: var(--font-family, "Poppins"), sans-serif;
 }
 
 .bookmarks-page *,
@@ -134,8 +134,7 @@
   background: #fff;
   color: #3e514a;
   font:
-    600 13px "DM Sans",
-    Arial,
+    600 13px var(--font-family, "Poppins"),
     sans-serif;
   cursor: pointer;
 }
@@ -169,8 +168,7 @@
     no-repeat right 14px center;
   color: #596861;
   font:
-    500 12px "DM Sans",
-    Arial,
+    500 12px var(--font-family, "Poppins"),
     sans-serif;
 }
 
