@@ -4,13 +4,45 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>freshfind</title>
+    <meta
+      name="description"
+      content="Discover local farmers' markets, check opening hours, and explore fresh produce with FreshFind."
+    />
+    <meta name="theme-color" content="#2e7d32" />
+    <title>FreshFind | Local Markets and Fresh Produce</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-   <script>
-(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="YWloGhHZCjJh2vROBIU8c";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-</script>
+    <script>
+      (function () {
+        if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+          window.chatbase = (...args) => {
+            window.chatbase.q = window.chatbase.q || [];
+            window.chatbase.q.push(args);
+          };
+          window.chatbase = new Proxy(window.chatbase, {
+            get(target, property) {
+              if (property === "q") return target.q;
+              return (...args) => target(property, ...args);
+            },
+          });
+        }
+
+        const loadChatbase = () => {
+          const script = document.createElement("script");
+          script.src = "https://www.chatbase.co/embed.min.js";
+          script.id = "YWloGhHZCjJh2vROBIU8c";
+          script.domain = "www.chatbase.co";
+          document.body.appendChild(script);
+        };
+
+        if (document.readyState === "complete") {
+          loadChatbase();
+        } else {
+          window.addEventListener("load", loadChatbase, { once: true });
+        }
+      })();
+    </script>
   </body>
 </html>

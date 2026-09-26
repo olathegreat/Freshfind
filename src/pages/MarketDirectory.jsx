@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { BiSearch } from "react-icons/bi";
 import data from "../data/freshfindData.json";
 import "./MarketDirectory.css";
-import { LuSettings, LuSettings2 } from "react-icons/lu";
+import { LuSettings2 } from "react-icons/lu";
 import { GoArrowUpRight } from "react-icons/go";
+import { FiBookmark } from "react-icons/fi";
+import { useBookmarks } from "../context/useBookmarks";
 
 const PAGE_SIZE = 12;
 
@@ -21,17 +21,16 @@ const DAY_ABBR = {
 };
 const ALL_DAYS = Object.keys(DAY_ABBR);
 
-
 const AREA_ALIASES = {
   "anambra state": "Anambra",
-  "anambra": "Anambra",
+  anambra: "Anambra",
   "rivers state": "Rivers",
-  "rivers": "Rivers",
+  rivers: "Rivers",
   "lagos state": "Lagos",
-  "lagos": "Lagos",
-  "ibadan": "Ibadan",
-  "abuja": "Abuja",
-  "kano": "Kano",
+  lagos: "Lagos",
+  ibadan: "Ibadan",
+  abuja: "Abuja",
+  kano: "Kano",
 };
 
 function getArea(location = "") {
@@ -102,10 +101,7 @@ const SORT_OPTIONS = [
 
 function formatDayRange(days = []) {
   if (days.length === 7) return "Everyday";
-  if (
-    days.length === 6 &&
-    ALL_DAYS.slice(1).every((d) => days.includes(d))
-  ) {
+  if (days.length === 6 && ALL_DAYS.slice(1).every((d) => days.includes(d))) {
     return "Mon–Sat";
   }
   return days.map((d) => DAY_ABBR[d] || d).join(", ");
@@ -113,10 +109,11 @@ function formatDayRange(days = []) {
 
 function MarketDirectory() {
   const { markets, produce } = data;
+  const { bookmarkedIds, toggleBookmark } = useBookmarks();
 
   const produceCategoryMap = useMemo(
     () => buildProduceCategoryMap(produce),
-    [produce]
+    [produce],
   );
 
   const todayIndex = new Date().getDay();
@@ -147,8 +144,7 @@ function MarketDirectory() {
   const dayOptions = useMemo(() => {
     return ALL_DAYS.map((day) => ({
       name: day,
-      count: enrichedMarkets.filter((m) => (m.days || []).includes(day))
-        .length,
+      count: enrichedMarkets.filter((m) => (m.days || []).includes(day)).length,
     })).filter((d) => d.count > 0);
   }, [enrichedMarkets]);
 
@@ -209,7 +205,7 @@ function MarketDirectory() {
         setLocationError("Location unavailable — showing alphabetical order.");
         setLocating(false);
       },
-      { timeout: 8000 }
+      { timeout: 8000 },
     );
   };
 
@@ -231,7 +227,7 @@ function MarketDirectory() {
     }
     if (activeProduceType) {
       items = items.filter((m) =>
-        m.derivedCategories.includes(activeProduceType)
+        m.derivedCategories.includes(activeProduceType),
       );
     }
     if (searchTerm.trim()) {
@@ -239,7 +235,7 @@ function MarketDirectory() {
       items = items.filter(
         (m) =>
           m.name.toLowerCase().includes(term) ||
-          m.location.toLowerCase().includes(term)
+          m.location.toLowerCase().includes(term),
       );
     }
 
@@ -274,7 +270,7 @@ function MarketDirectory() {
   const currentPage = Math.min(page, totalPages);
   const pageItems = filtered.slice(
     (currentPage - 1) * PAGE_SIZE,
-    currentPage * PAGE_SIZE
+    currentPage * PAGE_SIZE,
   );
 
   const resetPage = () => setPage(1);
@@ -320,8 +316,6 @@ function MarketDirectory() {
 
   return (
     <>
-      
-
       <section className="md-hero">
         <div className="md-hero-overlay" />
         <div className="md-breadcrumb">
@@ -329,20 +323,23 @@ function MarketDirectory() {
           <span className="md-crumb-sep">›</span>
           <span>Find a Market</span>
           <span className="md-crumb-sep">›</span>
-          <span className="md-crumb-active">
-            {activeArea || "All Markets"}
-          </span>
+          <span className="md-crumb-active">{activeArea || "All Markets"}</span>
         </div>
       </section>
 
       <div className="md-page">
         <div className="md-content-row">
-          <aside className={`md-sidebar ${mobileFiltersOpen ? "md-sidebar-open" : ""}`}>
+          <aside
+            className={`md-sidebar ${mobileFiltersOpen ? "md-sidebar-open" : ""}`}
+          >
             <button
               className="md-filter-btn"
               onClick={() => setMobileFiltersOpen((v) => !v)}
             >
-              Filter <span className="md-filter-icon"><LuSettings2/></span>
+              Filter{" "}
+              <span className="md-filter-icon">
+                <LuSettings2 />
+              </span>
             </button>
 
             <div className="md-sidebar-block">
@@ -353,7 +350,8 @@ function MarketDirectory() {
                   onClick={() => toggleArea(null)}
                 >
                   <span className="md-radio" />
-                  All <span className="md-count">({enrichedMarkets.length})</span>
+                  All{" "}
+                  <span className="md-count">({enrichedMarkets.length})</span>
                 </li>
                 {areaOptions.map((opt) => (
                   <li
@@ -431,7 +429,7 @@ function MarketDirectory() {
           <main className="md-main">
             <div className="md-search-row">
               <div className="md-search-box">
-                  <BiSearch className="md-search-icon"/>
+                <BiSearch className="md-search-icon" />
                 <input
                   type="text"
                   placeholder="Search market by name or location"
@@ -520,6 +518,15 @@ function MarketDirectory() {
                   <div className="md-card-image">
                     <span className="md-badge">WHOLESALE &amp; FRESH</span>
                     <img src={market.image} alt={market.name} loading="lazy" />
+                    <button
+                      className={`md-save-bookmark${bookmarkedIds.includes(market.id) ? " is-bookmarked" : ""}`}
+                      type="button"
+                      aria-label={`${bookmarkedIds.includes(market.id) ? "Remove" : "Save"} ${market.name} ${bookmarkedIds.includes(market.id) ? "from" : "to"} bookmarks`}
+                      aria-pressed={bookmarkedIds.includes(market.id)}
+                      onClick={() => toggleBookmark(market)}
+                    >
+                      <FiBookmark aria-hidden="true" />
+                    </button>
                   </div>
                   <div className="md-card-body">
                     <div className="md-card-top">
@@ -529,10 +536,10 @@ function MarketDirectory() {
                           {market.openInDays === 0
                             ? "Open today"
                             : market.openInDays === 1
-                            ? "Opens tomorrow"
-                            : market.openInDays === Infinity
-                            ? "Hours vary"
-                            : `Opens in ${market.openInDays}d`}
+                              ? "Opens tomorrow"
+                              : market.openInDays === Infinity
+                                ? "Hours vary"
+                                : `Opens in ${market.openInDays}d`}
                         </span>
                       )}
                       {sortBy === "nearMe" &&
@@ -572,15 +579,18 @@ function MarketDirectory() {
                       to={`${MARKET_DETAIL_BASE_PATH}/${market.id}`}
                       className="md-view-link"
                     >
-                      View market <span><GoArrowUpRight/></span>
+                      View market{" "}
+                      <span>
+                        <GoArrowUpRight />
+                      </span>
                     </Link>
                   </div>
                 </div>
               ))}
               {pageItems.length === 0 && (
                 <div className="md-empty">
-                  No markets match your search. Try a different name, area,
-                  or day.
+                  No markets match your search. Try a different name, area, or
+                  day.
                 </div>
               )}
             </div>
@@ -625,8 +635,6 @@ function MarketDirectory() {
           </main>
         </div>
       </div>
-
-     
     </>
   );
 }

@@ -1,10 +1,10 @@
 /* ProduceGuide.css */
 
 :root {
-  --pg-green: #00B207;
-  --pg-green-dark: #0e5c2a;
-  --pg-green-darker: #004819;
-  --pg-bg-light: #eaf7e3;
+  --pg-green: #4caf50;
+  --pg-green-dark: #2e7d32;
+  --pg-green-darker: #1b5e20;
+  --pg-bg-light: #edf7ed;
   --pg-text-dark: #1a1a1a;
   --pg-text-muted: #6b7a6f;
   --pg-border: #dfe8dc;
@@ -14,13 +14,9 @@
 .pg-hero {
   position: relative;
   height: 120px;
-  background: linear-gradient(
-      to right,
-      rgba(10, 20, 10, 0.65),
-      rgba(10, 20, 10, 0.15)
-    ),
-    url("../assets/productbanner.png")
-      center/cover no-repeat;
+  background:
+    linear-gradient(to right, rgba(10, 20, 10, 0.65), rgba(10, 20, 10, 0.15)),
+    url("../assets/productbanner.png") center/cover no-repeat;
   display: flex;
   align-items: flex-end;
   background-position: center;
@@ -35,7 +31,7 @@
 .pg-breadcrumb {
   position: relative;
   z-index: 1;
-  width: min(1080px, calc(100% - 30px));
+  width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
   padding: 18px 0;
   color: #fff;
@@ -56,12 +52,12 @@
 
 /* Page layout */
 .pg-page {
-  background: #F0FFDF;
+  background: #f0ffdf;
   padding: 40px 0 60px;
 }
 
 .pg-content-row {
-  width: min(1080px, calc(100% - 30px));
+  width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
   display: flex;
   gap: 32px;
@@ -76,7 +72,7 @@
 
 .pg-filter-btn {
   width: 50%;
-  background: #00B207;
+  background: #00b207;
   color: #fff;
   border: none;
   border-radius: 50px;
@@ -90,7 +86,7 @@
   cursor: pointer;
   margin-bottom: 20px;
 }
-.pg-filter-icon{
+.pg-filter-icon {
   width: 20px;
   height: 20px;
 }
@@ -177,8 +173,7 @@
   background: #f4f9f1;
   border-radius: 10px;
   padding: 24px 20px;
-  background: url("../assets/home2.png")
-    center/cover no-repeat;
+  background: url("../assets/home2.png") center/cover no-repeat;
   position: relative;
   min-height: 220px;
   display: flex;
@@ -215,7 +210,7 @@
   padding: 10px 18px;
   font-size: 14px;
   font-weight: 600;
-  color: #00B207;
+  color: #00b207;
   text-decoration: none;
   width: fit-content;
 }
@@ -232,7 +227,7 @@
 }
 
 .pg-search-box {
-  border: 1px solid #E8E9E5;
+  border: 1px solid #e8e9e5;
   flex: 1;
   background: none;
   border-top-left-radius: 8px;
@@ -253,7 +248,7 @@
 }
 
 .pg-search-btn {
-  background: #00B207;
+  background: #00b207;
   color: #fff;
   border: none;
   border-top-right-radius: 8px;
@@ -419,7 +414,7 @@
 
   .pg-content-row {
     flex-direction: column;
-    width: calc(100% - 24px);
+    width: calc(100% - 28px);
   }
 
   .pg-sidebar {
@@ -431,7 +426,7 @@
   }
 
   .pg-breadcrumb {
-    width: calc(100% - 24px);
+    width: calc(100% - 28px);
     padding: 14px 0;
   }
 }

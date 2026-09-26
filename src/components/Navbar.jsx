@@ -3,6 +3,7 @@ import { FaComments, FaBars, FaTimes } from 'react-icons/fa';
 import Chatbot from './Chatbot';
 import './Navbar.css';
 import logo from "../assets/freshfind-logo.png";
+import logoWhite from "../assets/logowhite.png"
 import countsIcon from "../assets/counts-icon.png"
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LuPhoneCall } from 'react-icons/lu';
@@ -204,7 +205,7 @@ const Navbar = () => {
         <div className="nav-drawer-head">
           <span className="nav-drawer-brand">
             <Link className="brand" to="/" aria-label="FreshFind home">
-              <img src={logo} alt="FreshFind" />
+              <img src={logoWhite} alt="FreshFind" />
             </Link>
 
           </span>

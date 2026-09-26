@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import homeImage from "../assets/home1.png";
 import homeImage2 from "../assets/home2.png";
@@ -6,24 +6,18 @@ import homeImage3 from "../assets/home3.png";
 import FAQimage from "../assets/faqimage.png";
 import { MdArrowOutward } from "react-icons/md";
 import {
-  FiSearch,
-  FiHeart,
+  FiBookmark,
   FiArrowRight,
   FiMapPin,
   FiClock,
   FiShoppingBag,
   FiMessageCircle,
   FiChevronDown,
-  FiPhone,
   FiCheckCircle,
-  FiMenu,
-  FiX,
 } from "react-icons/fi";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Chatbot from "../components/Chatbot";
 import data from "../data/freshfindData.json";
+import { useBookmarks } from "../context/useBookmarks";
 
 import "./Home.css";
 
@@ -194,6 +188,7 @@ const faqs = [
 
 function Home() {
   const { markets, produce } = data;
+  const { bookmarkedIds, toggleBookmark } = useBookmarks();
 
   const [activeFaq, setActiveFaq] = useState(0);
   const [email, setEmail] = useState("");
@@ -207,7 +202,7 @@ function Home() {
 
   const produceCategoryMap = useMemo(
     () => buildProduceCategoryMap(produce),
-    [produce]
+    [produce],
   );
 
   const enrichedMarkets = useMemo(
@@ -217,7 +212,7 @@ function Home() {
         area: getArea(m.location),
         derivedCategories: getMarketCategories(m, produceCategoryMap),
       })),
-    [markets, produceCategoryMap]
+    [markets, produceCategoryMap],
   );
 
   // Picks the 3 markets with the soonest open/close event, so the
@@ -244,7 +239,7 @@ function Home() {
 
   const popularProduce = useMemo(() => {
     const picked = POPULAR_PRODUCE_NAMES.map((name) =>
-      produce.find((p) => p.name.toLowerCase() === name.toLowerCase())
+      produce.find((p) => p.name.toLowerCase() === name.toLowerCase()),
     ).filter(Boolean);
     return picked.length === POPULAR_PRODUCE_NAMES.length
       ? picked
@@ -253,7 +248,7 @@ function Home() {
 
   const popularMarkets = useMemo(() => {
     const picked = POPULAR_MARKET_NAMES.map((name) =>
-      enrichedMarkets.find((m) => m.name.toLowerCase() === name.toLowerCase())
+      enrichedMarkets.find((m) => m.name.toLowerCase() === name.toLowerCase()),
     ).filter(Boolean);
     return picked.length === POPULAR_MARKET_NAMES.length
       ? picked
@@ -531,6 +526,15 @@ function Home() {
               <article className="market-info-card" key={market.id}>
                 <div className="market-image">
                   <img src={market.image} alt={market.name} />
+                  <button
+                    className={`home-market-bookmark${bookmarkedIds.includes(market.id) ? " is-bookmarked" : ""}`}
+                    type="button"
+                    aria-label={`${bookmarkedIds.includes(market.id) ? "Remove" : "Save"} ${market.name} ${bookmarkedIds.includes(market.id) ? "from" : "to"} bookmarks`}
+                    aria-pressed={bookmarkedIds.includes(market.id)}
+                    onClick={() => toggleBookmark(market)}
+                  >
+                    <FiBookmark aria-hidden="true" />
+                  </button>
                 </div>
 
                 <div className="market-info">
@@ -630,8 +634,8 @@ function Home() {
               <h3>Subscribe our Newsletter</h3>
 
               <p>
-                Get latest updates on fresh produce and market updates
-                directly to your email.
+                Get latest updates on fresh produce and market updates directly
+                to your email.
               </p>
             </div>
 

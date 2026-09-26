@@ -1,29 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaClock, FaHeart, FaShareAlt, FaArrowLeft } from 'react-icons/fa';
-import data from '../data/freshfindData.json';
-import './MarketDetail.css';
+import { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  FaMapMarkerAlt,
+  FaHeart,
+  FaShareAlt,
+  FaArrowLeft,
+} from "react-icons/fa";
+import data from "../data/freshfindData.json";
+import { useBookmarks } from "../context/useBookmarks";
+import "./MarketDetail.css";
 
 const MarketDetail = () => {
   const { id } = useParams();
-  const [market, setMarket] = useState(null);
+  const market = data.markets.find((item) => item.id === Number(id));
+  const { bookmarkedIds, toggleBookmark } = useBookmarks();
 
   useEffect(() => {
-    const foundMarket = data.markets.find(m => m.id === parseInt(id));
-    setMarket(foundMarket);
     window.scrollTo(0, 0); // Scroll to top on load
   }, [id]);
 
   if (!market) {
-    return <div className="container section"><h2>Market not found</h2><Link to="/markets" className="btn btn-primary">Back to Directory</Link></div>;
+    return (
+      <div className="container section">
+        <h2>Market not found</h2>
+        <Link to="/markets" className="btn btn-primary">
+          Back to Directory
+        </Link>
+      </div>
+    );
   }
+
+  const isBookmarked = bookmarkedIds.includes(market.id);
 
   return (
     <div className="market-detail-page">
       {/* Breadcrumb */}
       <div className="breadcrumb-container">
         <div className="container">
-          <Link to="/markets" className="back-link"><FaArrowLeft /> Back to Markets</Link>
+          <Link to="/markets" className="back-link">
+            <FaArrowLeft /> Back to Markets
+          </Link>
         </div>
       </div>
 
@@ -35,10 +51,21 @@ const MarketDetail = () => {
           </div>
           <div className="detail-info animate-fade-up delay-1">
             <h1>{market.name}</h1>
-            <p className="detail-location"><FaMapMarkerAlt /> {market.location}</p>
+            <p className="detail-location">
+              <FaMapMarkerAlt /> {market.location}
+            </p>
             <div className="detail-actions">
-              <button className="btn btn-secondary"><FaHeart /> Save Market</button>
-              <button className="btn btn-secondary"><FaShareAlt /> Share</button>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                aria-pressed={isBookmarked}
+                onClick={() => toggleBookmark(market)}
+              >
+                <FaHeart /> {isBookmarked ? "Saved Market" : "Save Market"}
+              </button>
+              <button className="btn btn-secondary">
+                <FaShareAlt /> Share
+              </button>
             </div>
             <p className="detail-desc">{market.description}</p>
           </div>
@@ -50,15 +77,28 @@ const MarketDetail = () => {
         <div className="schedule-section animate-fade-up delay-2">
           <h2>Market Hours</h2>
           <div className="schedule-table">
-            {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => {
+            {[
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ].map((day) => {
               const isOpen = market.days.includes(day);
-              const isToday = new Date().toLocaleDateString('en-US', { weekday: 'long' }) === day;
-              
+              const isToday =
+                new Date().toLocaleDateString("en-US", { weekday: "long" }) ===
+                day;
+
               return (
-                <div className={`schedule-row ${isToday ? 'today' : ''}`} key={day}>
+                <div
+                  className={`schedule-row ${isToday ? "today" : ""}`}
+                  key={day}
+                >
                   <span className="day">{day}</span>
                   <span className="hours">
-                    {isOpen ? market.hours : 'Closed'}
+                    {isOpen ? market.hours : "Closed"}
                   </span>
                 </div>
               );
@@ -77,7 +117,13 @@ const MarketDetail = () => {
               </div>
             ))}
           </div>
-          <Link to="/produce" className="btn btn-primary" style={{marginTop: '2rem'}}>Explore Produce Guide →</Link>
+          <Link
+            to="/produce"
+            className="btn btn-primary"
+            style={{ marginTop: "2rem" }}
+          >
+            Explore Produce Guide →
+          </Link>
         </div>
       </div>
     </div>
