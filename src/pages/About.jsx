@@ -89,7 +89,7 @@ const About = () => {
 
               <div className="team-icon">
                 <img className='team-member' src="https://res.cloudinary.com/tummi9le/image/upload/v1790346862/Image_1.jpg" alt="Team Icon" />
-                <span>Adesawe Oreoluwa</span>
+                <span>Adesewa Olujobi</span>
                 <span>Developer</span>
               </div>
 

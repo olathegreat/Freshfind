@@ -1,0 +1,224 @@
+:root {
+  --green: #1c6b2e;
+  --green-dark: #123d1c;
+  --accent: #2fa84f;
+  --accent-light: #a9e0b6;
+  --ink: #1a1f1c;
+  --muted: #6b7570;
+  --line: #e7e9e5;
+}
+
+.notfound-page {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+}
+
+/* Breadcrumb banner */
+.breadcrumb-banner {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  background: url(../assets/breadcrumbimg.jpg);
+  /* Swap this for a real produce photo asset, e.g.:
+     background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url("/assets/breadcrumb-veg.jpg") center/cover; */
+ 
+}
+
+ .errorimage {
+  
+  height: 350px;
+  margin-bottom: 1.5rem;
+  max-width: 750px;
+  object-fit: contain;
+  display: block;
+
+}   
+
+
+.breadcrumb-inner {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 4vw;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  font-size: 0.95rem;
+}
+.breadcrumb-inner a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.crumb-sep {
+  opacity: 0.7;
+}
+.crumb-current {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* 404 content */
+.notfound-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 4vw 3rem;
+  text-align: center;
+}
+
+.illustration-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+
+
+}
+
+.digit {
+  font-size: 170px;
+  font-weight: 800;
+  fill: var(--accent);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.digit-o {
+  fill: var(--accent-light);
+}
+.o-inner {
+  fill: #eef8ee;
+}
+.peeker .hair {
+  fill: #2a2018;
+}
+.peeker .face {
+  fill: #f2c4a0;
+}
+.peeker .eye {
+  fill: #2a2018;
+}
+.peeker .smile {
+  stroke: #2a2018;
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+}
+.peeker .hand {
+  fill: #f2c4a0;
+}
+
+
+
+.notfound-content h1 {
+  font-size: 2rem;
+  margin: 0.5rem 0 1rem;
+}
+.notfound-content p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.8rem;
+}
+.btn-home {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btn-home:hover {
+  background: var(--green);
+}
+
+/* Newsletter */
+.newsletter {
+  background: #f4f5f3;
+  padding: 2.5rem 4vw;
+}
+.newsletter-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.newsletter-copy h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.3rem;
+}
+.newsletter-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 32ch;
+}
+.newsletter-form {
+  display: flex;
+  flex: 1;
+  min-width: 260px;
+  max-width: 480px;
+}
+.newsletter-form input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-right: none;
+  border-radius: 30px 0 0 30px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.9rem;
+  outline: none;
+}
+.newsletter-form button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 0 30px 30px 0;
+  padding: 0.8rem 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.subscribed-note {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 600;
+}
+.socials {
+  display: flex;
+  gap: 0.7rem;
+}
+.socials a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.socials a[aria-label="Twitter"],
+.socials a[aria-label="Pinterest"],
+.socials a[aria-label="Instagram"] {
+  background: #1a1f1c;
+}
+
+@media (max-width: 700px) {
+  .newsletter-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .newsletter-form {
+    max-width: 100%;
+  }
+  .errorimage {
+  
+height: 350px;
+  margin-bottom: 1.5rem;
+  max-width: 350px;
+  object-fit: contain;
+  display: block;
+
+}
+
+}

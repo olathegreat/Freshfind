@@ -53,6 +53,7 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .detail-actions .btn {
@@ -122,4 +123,96 @@
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
   color: var(--primary-green);
+}
+
+/* ============ Responsive ============ */
+
+/* Tablet: stack the two grids to one column each, but keep them
+   comfortably sized rather than jumping straight to phone rules. */
+@media (max-width: 992px) {
+  .detail-hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .detail-image img {
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .detail-info h1 {
+    font-size: 2.1rem;
+  }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  .detail-hero {
+    padding: 2rem 0;
+  }
+
+  .detail-info h1 {
+    font-size: 1.7rem;
+  }
+
+  .detail-location {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .detail-actions {
+    gap: 0.6rem;
+  }
+
+  .detail-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .detail-desc {
+    font-size: 1rem;
+  }
+
+  .schedule-table {
+    padding: 1rem;
+  }
+
+  .schedule-row {
+    padding: 0.75rem 0;
+    font-size: 0.95rem;
+  }
+
+  /* The negative margin trick that widens the "today" row only works
+     when it matches the parent's own padding — keep them in sync. */
+  .schedule-row.today {
+    margin: 0 -1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .produce-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .produce-item {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Small phone */
+@media (max-width: 380px) {
+  .detail-actions {
+    flex-direction: column;
+  }
+
+  .produce-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
