@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import homeImage from "../assets/home1.png";
+import homeImage2 from "../assets/home2.png";
+import homeImage3 from "../assets/home3.png";
+import FAQimage from "../assets/faqimage.png";
+import { MdArrowOutward } from "react-icons/md";
 import {
   FiSearch,
   FiHeart,
@@ -18,101 +23,145 @@ import {
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Chatbot from "../components/Chatbot";
+import data from "../data/freshfindData.json";
 
 import "./Home.css";
 
-/*
-  Replace these image paths with the actual images
-  you have inside src/assets.
-*/
+// Update this to match whatever path you register for MarketDetail.jsx
+// in App.jsx, e.g. <Route path="/market/:id" element={<MarketDetail />} />
+// (Keep this in sync with the same constant in MarketDirectory.jsx.)
+const MARKET_DETAIL_BASE_PATH = "/market";
 
-const openedMarkets = [
-  {
-    name: "Mile 12 Market",
-    image: "/images/mile12-market.jpg",
-    days: "00",
-    hours: "02",
-    minutes: "18",
-    seconds: "46",
-  },
-  {
-    name: "Wuse Market",
-    image: "/images/wuse-market.jpg",
-    days: "00",
-    hours: "02",
-    minutes: "18",
-    seconds: "46",
-  },
-  {
-    name: "Oyingbo",
-    image: "/images/oyingbo-market.jpg",
-    days: "00",
-    hours: "02",
-    minutes: "18",
-    seconds: "46",
-  },
+const ALL_DAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ];
+const DAY_ABBR = {
+  Sunday: "Sun",
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+};
 
-const popularProduce = [
-  {
-    name: "Fruits",
-    image: "/images/fruits.jpg",
-    category: "FRUITS",
-    description:
-      "A crisp, slightly bitter favourite. Enjoy fresh with watermelon, pineapple and other seasonal fruits.",
-  },
-  {
-    name: "Yam",
-    image: "/images/yam.jpg",
-    category: "ROOT CROPS",
-    description:
-      "A nutritious Nigerian staple. Find fresh yam from trusted farmers and local markets.",
-  },
-  {
-    name: "Pepper",
-    image: "/images/pepper.jpg",
-    category: "VEGETABLES",
-    description:
-      "Fresh peppers for your everyday cooking, sourced from local farmers and trusted markets.",
-  },
-  {
-    name: "Beans",
-    image: "/images/beans.jpg",
-    category: "GRAINS",
-    description:
-      "Quality beans sourced from trusted sellers and markets around your area.",
-  },
-];
+// Same "Bodija, Ibadan" -> "Ibadan" normalization used in MarketDirectory.jsx
+const AREA_ALIASES = {
+  "anambra state": "Anambra",
+  anambra: "Anambra",
+  "rivers state": "Rivers",
+  rivers: "Rivers",
+  "lagos state": "Lagos",
+  lagos: "Lagos",
+  ibadan: "Ibadan",
+  abuja: "Abuja",
+  kano: "Kano",
+};
 
-const popularMarkets = [
-  {
-    name: "Mile 12 Market",
-    image: "/images/mile12-market-small.jpg",
-    location: "Ketu, Lagos",
-    time: "Mon - Sat · 6am - 6pm",
-    products: "Fresh produce, grains",
-  },
-  {
-    name: "Oyingbo Market",
-    image: "/images/oyingbo-market-small.jpg",
-    location: "Ebute Metta, Lagos",
-    time: "Mon - Sat · 6am - 4pm",
-    products: "Fresh produce, grains",
-  },
-  {
-    name: "Bodija Market",
-    image: "/images/bodija-market.jpg",
-    location: "Bodija, Ibadan",
-    time: "Mon - Sat · 6am - 6pm",
-    products: "Vegetables, fruits",
-  },
-  {
-    name: "Dugbe Market",
-    image: "/images/dugbe-market.jpg",
-    location: "Dugbe, Ibadan",
-    time: "Mon - Sat · 7am - 5pm",
-    products: "Fresh produce, grains",
-  },
+function getArea(location = "") {
+  const parts = location.split(",").map((p) => p.trim());
+  const last = (parts[parts.length - 1] || "").toLowerCase();
+  return AREA_ALIASES[last] || parts[parts.length - 1] || "Other";
+}
+
+function formatDayRange(days = []) {
+  if (days.length === 7) return "Everyday";
+  if (days.length === 6 && ALL_DAYS.slice(1).every((d) => days.includes(d))) {
+    return "Mon–Sat";
+  }
+  return days.map((d) => DAY_ABBR[d] || d).join(", ");
+}
+
+// name -> category lookup built from produce[], so "Good for" on a market
+// card can be derived from its availableProduce list instead of hardcoded.
+function buildProduceCategoryMap(produce = []) {
+  const map = {};
+  produce.forEach((item) => {
+    map[item.name.toLowerCase()] = item.category;
+  });
+  return map;
+}
+
+function getMarketCategories(market, produceCategoryMap) {
+  const fromExplicit = market.categories || [];
+  const fromProduce = (market.availableProduce || [])
+    .map((p) => produceCategoryMap[p.toLowerCase()])
+    .filter(Boolean);
+  return [...new Set([...fromExplicit, ...fromProduce])];
+}
+
+// Parses "8:00 AM" against a given calendar day into a real Date.
+function parseTimeOnDate(timeStr, baseDate) {
+  const match = (timeStr || "").trim().match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!match) return null;
+  let [, hh, mm, period] = match;
+  hh = parseInt(hh, 10);
+  mm = parseInt(mm, 10);
+  if (period.toUpperCase() === "PM" && hh !== 12) hh += 12;
+  if (period.toUpperCase() === "AM" && hh === 12) hh = 0;
+  const d = new Date(baseDate);
+  d.setHours(hh, mm, 0, 0);
+  return d;
+}
+
+// Finds the market's next relevant open/close moment from `now`:
+// today if it's open today and hasn't closed yet, otherwise the next
+// day it's scheduled to open. Powers the "Opened Now" countdown cards.
+function getMarketWindow(market, now) {
+  const [openStr, closeStr] = (market.hours || "").split(/\s*[–-]\s*/);
+  if (!openStr || !closeStr) return null;
+
+  for (let offset = 0; offset <= 7; offset++) {
+    const day = new Date(now);
+    day.setDate(day.getDate() + offset);
+    const dayName = ALL_DAYS[day.getDay()];
+    if (!(market.days || []).includes(dayName)) continue;
+
+    const openTime = parseTimeOnDate(openStr, day);
+    const closeTime = parseTimeOnDate(closeStr, day);
+    if (!openTime || !closeTime) continue;
+
+    if (offset === 0 && now > closeTime) continue; // already closed today
+
+    const isOpenNow = offset === 0 && now >= openTime && now <= closeTime;
+    return { openTime, closeTime, isOpenNow };
+  }
+  return null;
+}
+
+function formatCountdown(ms) {
+  const clamped = Math.max(0, ms);
+  const days = Math.floor(clamped / 86400000);
+  const hours = Math.floor((clamped % 86400000) / 3600000);
+  const minutes = Math.floor((clamped % 3600000) / 60000);
+  const seconds = Math.floor((clamped % 60000) / 1000);
+  const pad = (n) => String(n).padStart(2, "0");
+  return {
+    days: pad(days),
+    hours: pad(hours),
+    minutes: pad(minutes),
+    seconds: pad(seconds),
+  };
+}
+
+// Nigeria's two broad produce seasons, used to flag "IN SEASON" items.
+function getCurrentSeason(now) {
+  const RAINY_MONTHS = [3, 4, 5, 6, 7, 8, 9]; // Apr–Oct
+  return RAINY_MONTHS.includes(now.getMonth()) ? "Rainy" : "Harmattan";
+}
+
+const POPULAR_PRODUCE_NAMES = ["Watermelon", "Yam", "Pepper", "Beans"];
+const POPULAR_MARKET_NAMES = [
+  "Mile 12 Market",
+  "Oyingbo Market",
+  "Bodija Market",
+  "Dugbe Market",
 ];
 
 const faqs = [
@@ -144,8 +193,72 @@ const faqs = [
 ];
 
 function Home() {
+  const { markets, produce } = data;
+
   const [activeFaq, setActiveFaq] = useState(0);
   const [email, setEmail] = useState("");
+  const [now, setNow] = useState(new Date());
+
+  // Ticks every second so the "Opened Now" countdowns stay live.
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const produceCategoryMap = useMemo(
+    () => buildProduceCategoryMap(produce),
+    [produce]
+  );
+
+  const enrichedMarkets = useMemo(
+    () =>
+      markets.map((m) => ({
+        ...m,
+        area: getArea(m.location),
+        derivedCategories: getMarketCategories(m, produceCategoryMap),
+      })),
+    [markets, produceCategoryMap]
+  );
+
+  // Picks the 3 markets with the soonest open/close event, so the
+  // section is always meaningful regardless of what time it is.
+  const openedMarkets = useMemo(() => {
+    const withWindow = enrichedMarkets
+      .map((m) => ({ ...m, window: getMarketWindow(m, now) }))
+      .filter((m) => m.window);
+
+    withWindow.sort((a, b) => {
+      const aTarget = a.window.isOpenNow
+        ? a.window.closeTime
+        : a.window.openTime;
+      const bTarget = b.window.isOpenNow
+        ? b.window.closeTime
+        : b.window.openTime;
+      return aTarget - bTarget;
+    });
+
+    return withWindow.slice(0, 3);
+  }, [enrichedMarkets, now]);
+
+  const currentSeason = useMemo(() => getCurrentSeason(now), [now]);
+
+  const popularProduce = useMemo(() => {
+    const picked = POPULAR_PRODUCE_NAMES.map((name) =>
+      produce.find((p) => p.name.toLowerCase() === name.toLowerCase())
+    ).filter(Boolean);
+    return picked.length === POPULAR_PRODUCE_NAMES.length
+      ? picked
+      : produce.slice(0, 4);
+  }, [produce]);
+
+  const popularMarkets = useMemo(() => {
+    const picked = POPULAR_MARKET_NAMES.map((name) =>
+      enrichedMarkets.find((m) => m.name.toLowerCase() === name.toLowerCase())
+    ).filter(Boolean);
+    return picked.length === POPULAR_MARKET_NAMES.length
+      ? picked
+      : enrichedMarkets.slice(0, 4);
+  }, [enrichedMarkets]);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -153,26 +266,21 @@ function Home() {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-
     if (!email.trim()) return;
-
     console.log("Subscribed:", email);
     setEmail("");
   };
 
   return (
     <div className="home-page">
-      <Navbar />
-
       {/* ================= HERO ================= */}
       <main>
         <section className="hero-section">
           <div className="hero-container">
-
             {/* Main Hero */}
             <div className="hero-main">
               <img
-                src="/images/hero-farmer.jpg"
+                src={homeImage}
                 alt="Local farmer with fresh produce"
                 className="hero-main-image"
               />
@@ -180,10 +288,6 @@ function Home() {
               <div className="hero-overlay" />
 
               <div className="hero-content">
-                <span className="hero-small-text">
-                  FRESH FROM YOUR LOCAL FARMERS
-                </span>
-
                 <h1>
                   Find Fresh Markets
                   <br />
@@ -205,34 +309,29 @@ function Home() {
 
             {/* Right Hero Cards */}
             <div className="hero-side">
-
               <div className="hero-small-card nearby-card">
                 <div className="small-card-content">
-                  <h2>
-                    Fresh.
-                    <br />
-                    Local.
-                    <br />
-                    Nearby.
-                  </h2>
+                  <img src={homeImage2} alt="Fresh vegetables" />
 
-                  <Link to="/markets" className="small-green-btn">
-                    Markets Near You
-                    <FiArrowRight />
-                  </Link>
+                  <div className="overlay-div">
+                    <h2>
+                      Fresh.
+                      <br />
+                      Local.
+                      <br />
+                      Nearby.
+                    </h2>
+
+                    <Link to="/markets" className="small-green-btn">
+                      Markets Near You
+                      <FiArrowRight />
+                    </Link>
+                  </div>
                 </div>
-
-                <img
-                  src="/images/fresh-basket.jpg"
-                  alt="Fresh vegetables"
-                />
               </div>
 
-              <div className="hero-small-card seasonal-card">
-                <img
-                  src="/images/seasonal-produce.jpg"
-                  alt="Seasonal produce"
-                />
+              <div className="hero-small-card sseasonal-card">
+                <img src={homeImage3} alt="Seasonal produce" />
 
                 <div className="seasonal-overlay" />
 
@@ -251,7 +350,6 @@ function Home() {
                   </Link>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -259,9 +357,8 @@ function Home() {
         {/* ================= FEATURES ================= */}
         <section className="feature-section">
           <div className="feature-container">
-
             <div className="feature-item">
-              <div className="feature-icon">
+              <div className="feature-react-icon">
                 <FiMapPin />
               </div>
 
@@ -272,7 +369,7 @@ function Home() {
             </div>
 
             <div className="feature-item">
-              <div className="feature-icon">
+              <div className="feature-react-icon">
                 <FiShoppingBag />
               </div>
 
@@ -283,7 +380,7 @@ function Home() {
             </div>
 
             <div className="feature-item">
-              <div className="feature-icon">
+              <div className="feature-react-icon">
                 <FiClock />
               </div>
 
@@ -294,7 +391,7 @@ function Home() {
             </div>
 
             <div className="feature-item">
-              <div className="feature-icon">
+              <div className="feature-react-icon">
                 <FiMessageCircle />
               </div>
 
@@ -303,7 +400,6 @@ function Home() {
                 <p>Get quick answers about markets and produce</p>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -319,64 +415,62 @@ function Home() {
           </div>
 
           <div className="opened-grid">
-            {openedMarkets.map((market) => (
-              <article className="opened-card" key={market.name}>
+            {openedMarkets.map((market) => {
+              const target = market.window.isOpenNow
+                ? market.window.closeTime
+                : market.window.openTime;
+              const countdown = formatCountdown(target - now);
 
-                <img
-                  src={market.image}
-                  alt={market.name}
-                />
+              return (
+                <article className="opened-card" key={market.id}>
+                  <img src={market.image} alt={market.name} />
 
-                <div className="market-card-overlay" />
+                  <div className="market-card-overlay" />
 
-                <div className="opened-card-content">
+                  <div className="opened-card-content">
+                    <h3>{market.name}</h3>
+                    <h2 className="open-card-h2">
+                      {market.window.isOpenNow ? "CLOSES IN" : "OPENS IN"}
+                    </h2>
+                    <div className="countdown">
+                      <div>
+                        <strong>{countdown.days}</strong>
+                        <span>DAYS</span>
+                      </div>
 
-                  <h3>{market.name}</h3>
+                      <div>
+                        <strong>{countdown.hours}</strong>
+                        <span>HRS</span>
+                      </div>
 
-                  <div className="countdown">
+                      <div>
+                        <strong>{countdown.minutes}</strong>
+                        <span>MIN</span>
+                      </div>
 
-                    <div>
-                      <strong>{market.days}</strong>
-                      <span>DAYS</span>
+                      <div>
+                        <strong>{countdown.seconds}</strong>
+                        <span>SEC</span>
+                      </div>
                     </div>
 
-                    <div>
-                      <strong>{market.hours}</strong>
-                      <span>HRS</span>
-                    </div>
-
-                    <div>
-                      <strong>{market.minutes}</strong>
-                      <span>MIN</span>
-                    </div>
-
-                    <div>
-                      <strong>{market.seconds}</strong>
-                      <span>SEC</span>
-                    </div>
-
+                    <Link
+                      to={`${MARKET_DETAIL_BASE_PATH}/${market.id}`}
+                      className="market-btn"
+                    >
+                      View Market
+                      <FiArrowRight />
+                    </Link>
                   </div>
-
-                  <Link
-                    to={`/markets/${market.name
-                      .toLowerCase()
-                      .replaceAll(" ", "-")}`}
-                    className="market-btn"
-                  >
-                    View Market
-                    <FiArrowRight />
-                  </Link>
-
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </section>
 
         {/* ================= POPULAR PRODUCE ================= */}
         <section className="produce-section">
           <div className="section-container">
-
             <div className="section-heading">
               <h2>Popular Produces</h2>
 
@@ -387,46 +481,42 @@ function Home() {
             </div>
 
             <div className="produce-grid">
+              {popularProduce.map((item) => {
+                const inSeason = item.season === currentSeason;
+                return (
+                  <article className="produce-card" key={item.id}>
+                    <div className="produce-image-wrapper">
+                      <img src={item.picture} alt={item.name} />
 
-              {popularProduce.map((produce) => (
-                <article className="produce-card" key={produce.name}>
-
-                  <div className="produce-image-wrapper">
-                    <img
-                      src={produce.image}
-                      alt={produce.name}
-                    />
-
-                    <span className="produce-tag">
-                      {produce.category}
-                    </span>
-                  </div>
-
-                  <div className="produce-content">
-                    <h3>{produce.name}</h3>
-
-                    <p>{produce.description}</p>
-
-                    <div className="produce-footer">
-                      <span>Markets Nearby</span>
-
-                      <Link to="/produce">
-                        View
-                        <FiArrowRight />
-                      </Link>
+                      <span
+                        className={`produce-tag ${
+                          inSeason ? "produce-tag-in" : "produce-tag-out"
+                        }`}
+                      >
+                        {inSeason ? "IN SEASON" : "OUT OF SEASON"}
+                      </span>
                     </div>
-                  </div>
 
-                </article>
-              ))}
+                    <div className="produce-content">
+                      <h3>{item.name}</h3>
 
+                      <p>{item.description}</p>
+
+                      <div className="produce-footer">
+                        <span>Markets Available:</span>
+
+                        <p>{item.markets.join(", ")}</p>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* ================= POPULAR MARKETS ================= */}
         <section className="markets-section section-container">
-
           <div className="section-heading">
             <h2>Popular Markets</h2>
 
@@ -437,22 +527,16 @@ function Home() {
           </div>
 
           <div className="markets-grid">
-
             {popularMarkets.map((market) => (
-              <article className="market-info-card" key={market.name}>
-
+              <article className="market-info-card" key={market.id}>
                 <div className="market-image">
-                  <img
-                    src={market.image}
-                    alt={market.name}
-                  />
+                  <img src={market.image} alt={market.name} />
                 </div>
 
                 <div className="market-info">
-
                   <div className="market-title-row">
                     <h3>{market.name}</h3>
-                    <span>OPEN</span>
+                    <span>{market.area.toUpperCase()}</span>
                   </div>
 
                   <p className="market-location">
@@ -461,50 +545,50 @@ function Home() {
                   </p>
 
                   <div className="market-meta">
-                    <span>
-                      <FiClock />
-                      {market.time}
-                    </span>
+                    <div className="market-meta-left">
+                      <FiClock className="meta-icon" />
+                      <div>
+                        <h6>WHEN TO GO</h6>
+                        <span>
+                          {formatDayRange(market.days)} · {market.hours}
+                        </span>
+                      </div>
+                    </div>
 
-                    <span>
-                      <FiCheckCircle />
-                      {market.products}
-                    </span>
+                    <div className="market-meta-right">
+                      <FiCheckCircle className="meta-icon" />
+                      <div>
+                        <h6>GOOD FOR</h6>
+                        <span>
+                          {market.derivedCategories.length
+                            ? market.derivedCategories.slice(0, 2).join(", ")
+                            : (market.availableProduce || [])
+                                .slice(0, 2)
+                                .join(", ")}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-
                   <Link
-                    to={`/markets/${market.name
-                      .toLowerCase()
-                      .replaceAll(" ", "-")}`}
+                    to={`${MARKET_DETAIL_BASE_PATH}/${market.id}`}
                     className="market-link"
                   >
                     View market
-                    <FiArrowRight />
+                    <MdArrowOutward />
                   </Link>
-
                 </div>
-
               </article>
             ))}
-
           </div>
         </section>
 
         {/* ================= FAQ ================= */}
         <section className="faq-section">
-
           <div className="faq-container">
-
             <div className="faq-content">
-
-              <span className="section-label">
-                NEED HELP?
-              </span>
-
               <h2>Checkout our FAQs</h2>
 
               <div className="faq-list">
-
                 {faqs.map((faq, index) => (
                   <div
                     className={`faq-item ${
@@ -512,7 +596,6 @@ function Home() {
                     }`}
                     key={faq.question}
                   >
-
                     <button
                       className="faq-question"
                       onClick={() => toggleFaq(index)}
@@ -525,36 +608,24 @@ function Home() {
                     <div className="faq-answer">
                       <p>{faq.answer}</p>
                     </div>
-
                   </div>
                 ))}
-
               </div>
-
             </div>
 
             <div className="faq-image">
-
-              <img
-                src="/images/farmer-faq.png"
-                alt="Farmer holding fresh vegetables"
-              />
+              <img src={FAQimage} alt="Farmer holding fresh vegetables" />
 
               <div className="assistant-button">
                 <FiMessageCircle />
               </div>
-
             </div>
-
           </div>
-
         </section>
 
         {/* ================= NEWSLETTER ================= */}
         <section className="newsletter-section">
-
           <div className="newsletter-container">
-
             <div className="newsletter-text">
               <h3>Subscribe our Newsletter</h3>
 
@@ -564,10 +635,7 @@ function Home() {
               </p>
             </div>
 
-            <form
-              className="newsletter-form"
-              onSubmit={handleSubscribe}
-            >
+            <form className="newsletter-form" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 placeholder="Your email address"
@@ -576,9 +644,7 @@ function Home() {
                 required
               />
 
-              <button type="submit">
-                Subscribe
-              </button>
+              <button type="submit">Subscribe</button>
             </form>
 
             <div className="social-icons">
@@ -598,16 +664,9 @@ function Home() {
                 ◎
               </a>
             </div>
-
           </div>
-
         </section>
-
       </main>
-
-      <Footer />
-
-      <Chatbot />
     </div>
   );
 }

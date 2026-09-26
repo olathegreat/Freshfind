@@ -13,6 +13,7 @@ import ProduceGuide from './pages/ProduceGuide';
 import SeasonalPicks from './pages/SeasonalPicks';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Error404 from './pages/Error404';
 
 const Bookmarks = () => (
   <div className="container section" style={{ minHeight: '60vh' }}>
@@ -46,7 +47,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </main>
         <Footer /> {/* <-- Add Footer here */}

@@ -1,65 +1,192 @@
-.seasonal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+:root {
+  --green: #1c6b2e;
+  --green-dark: #123d1c;
+  --accent: #2fa84f;
+  --orange: #e8823a;
+  --ink: #1a1f1c;
+  --muted: #6b7570;
+  --card: #f7f8f6;
+  --line: #e7e9e5;
 }
 
-.seasonal-card {
-  background: var(--white);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  text-align: center;
-  transition: var(--transition);
+.home {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+}
+
+/* Hero */
+.hero {
+  background: #e7efe4;
+  padding: 4vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.hero-copy {
+  flex: 1;
+  min-width: 280px;
+}
+.eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+.hero h2 {
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
+}
+.hero h2 b {
+  color: var(--orange);
+}
+.hero p {
+  color: var(--muted);
+  max-width: 38ch;
+  margin-bottom: 1.5rem;
+}
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.hero-visual  {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  justify-content: center;
+  font-size: 7rem;
+  line-height: 1;
+}
+.hero-visual img{
+ width: 700px;
 }
 
-.seasonal-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2.5rem 4vw;
+  max-width: 1300px;
+  margin: 0 auto;
 }
-
-.seasonal-card-icon {
-  width: 60px;
-  height: 60px;
-  background: #f0fdf4;
-  color: var(--primary-green);
+.feature {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+.feature .icon {
+  font-size: 1.6rem;
+  background: var(--card);
   border-radius: 50%;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+.feature h3 {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+}
+.feature p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
-.seasonal-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+/* Produce sections */
+.produce {
+  padding: 1.5rem 4vw 3rem;
+  max-width: 1300px;
+  margin: 0 auto;
 }
-
-.season-tag {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--primary-green);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
 }
-
-.seasonal-desc {
+.section-head h2 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+.section-head a {
+  color: var(--accent);
+  font-weight: 600;
   font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
+  text-decoration: none;
 }
 
-.section-cta h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+.p-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.p-thumb {
+  height: 150px;
+  position: relative;
+  background: #eef1ec;
+}
+.p-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.tag {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  background: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  z-index: 1;
+}
+.p-body {
+  padding: 0.9rem 1rem 1.1rem;
+}
+.p-body h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+.p-body p {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+.p-body .markets {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.p-body .markets b {
+  color: var(--green);
 }
 
-.section-cta p {
-  font-size: 1.1rem;
+@media (max-width: 700px) {
+  .hero {
+    text-align: center;
+    justify-content: center;
+  }
 }

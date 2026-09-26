@@ -1,7 +1,3 @@
-/* =========================================
-   FRESHFIND HOME PAGE
-========================================= */
-
 .home-page {
   width: 100%;
   min-height: 100vh;
@@ -9,38 +5,38 @@
   color: #1d1d1d;
   overflow-x: hidden;
 }
-
+ 
 .home-page *,
 .home-page *::before,
 .home-page *::after {
   box-sizing: border-box;
 }
-
+ 
 .home-page a {
   text-decoration: none;
 }
-
+ 
 .home-page img {
   display: block;
   width: 100%;
 }
-
+ 
 /* =========================================
    GLOBAL
 ========================================= */
-
+ 
 .section-container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
 }
-
+ 
 .section-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 22px;
 }
-
+ 
 .section-heading h2 {
   margin: 0;
   font-size: 23px;
@@ -48,7 +44,7 @@
   font-weight: 700;
   color: #181818;
 }
-
+ 
 .view-all {
   display: inline-flex;
   align-items: center;
@@ -58,11 +54,11 @@
   font-weight: 600;
   transition: 0.25s ease;
 }
-
+ 
 .view-all:hover {
   gap: 9px;
 }
-
+ 
 .primary-btn,
 .small-green-btn,
 .market-btn {
@@ -73,64 +69,64 @@
   border-radius: 30px;
   transition: 0.25s ease;
 }
-
-.primary-btn {
-  padding: 10px 17px;
+ 
+.primary-btn{
+  padding: 10px 20px;
   background: #ffffff;
   color: #078c32;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 700;
 }
-
+ 
 .primary-btn:hover {
   transform: translateY(-2px);
   background: #f2fff5;
 }
-
+ 
 .primary-btn svg,
 .small-green-btn svg,
 .market-btn svg {
   font-size: 13px;
 }
-
+ 
 /* =========================================
    HERO
 ========================================= */
-
+ 
 .hero-section {
   position: relative;
   padding: 16px 0 18px;
   background:
     url("/images/vegetable-pattern.png") center/cover no-repeat;
 }
-
+ 
 .hero-container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
-
+ 
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(260px, 0.88fr);
   gap: 14px;
 }
-
+ 
 .hero-main {
   position: relative;
-  height: 350px;
+  /* height: 350px; */
   overflow: hidden;
   border-radius: 8px;
   background: #008d32;
 }
-
+ 
 .hero-main-image {
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
   object-position: center;
 }
-
+ 
 .hero-overlay {
   position: absolute;
   inset: 0;
-
+ 
   background:
     linear-gradient(
       90deg,
@@ -139,7 +135,7 @@
       rgba(0, 0, 0, 0) 78%
     );
 }
-
+ 
 .hero-content {
   position: absolute;
   left: 26px;
@@ -148,96 +144,105 @@
   color: #ffffff;
   z-index: 2;
 }
+ 
 
-.hero-small-text {
-  display: block;
-  margin-bottom: 9px;
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  opacity: 0.85;
-}
-
+ 
 .hero-content h1 {
   margin: 0;
   font-size: clamp(30px, 3.1vw, 43px);
   line-height: 1.02;
   letter-spacing: -1.3px;
-  font-weight: 800;
+  font-weight: 600;
+  color: #ffffff;
 }
-
+ 
 .hero-content p {
   margin: 14px 0 19px;
   font-size: 11px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.82);
+  padding-left: 10px;
+  border-left: 1px solid #84D187;
 }
-
+ 
 .hero-side {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 14px;
 }
-
+ 
 .hero-small-card {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
   min-height: 168px;
+  background-image: url(../assets/home3.png);
+  background-position: start;
+  background-size: cover;
+  width: 100%;
 }
 
+ 
 .nearby-card {
   background: #f0ede5;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
+ 
 .nearby-card img {
-  width: 52%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: left center;
 }
-
+ 
 .small-card-content {
-  width: 48%;
-  padding: 15px;
+  
   position: relative;
   z-index: 2;
+  height: 100%;
+  width: 100%;
 }
-
+ .overlay-div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  line-height: 10px;
+ }
 .small-card-content h2 {
   margin: 0 0 15px;
-  font-size: 19px;
+  font-size: 30px;
   line-height: 1.04;
   font-weight: 800;
 }
-
+ 
 .small-green-btn {
   padding: 8px 10px;
   background: #ffffff;
   color: #08ad3b;
-  font-size: 8px;
+  font-size:  12px;
   font-weight: 700;
   white-space: nowrap;
 }
-
-.seasonal-card {
+ 
+.sseasonal-card {
   background: #045c20;
 }
-
-.seasonal-card img {
+ 
+.sseasonal-card img {
   height: 100%;
   object-fit: cover;
 }
-
+ 
 .seasonal-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 66, 20, 0.55);
 }
-
+ 
 .seasonal-content {
   position: absolute;
   left: 50%;
@@ -247,7 +252,7 @@
   text-align: center;
   color: #fff;
 }
-
+ 
 .seasonal-content span {
   display: block;
   margin-bottom: 7px;
@@ -255,13 +260,15 @@
   letter-spacing: 1px;
   opacity: 0.85;
 }
-
+ 
 .seasonal-content h2 {
   margin: 0 0 11px;
-  font-size: 18px;
+  font-size: 30px;
+  font-weight: 500;
   line-height: 1.05;
+  color: #ffffff;
 }
-
+ 
 .seasonal-content a {
   display: inline-flex;
   align-items: center;
@@ -270,70 +277,65 @@
   font-size: 9px;
   font-weight: 700;
 }
-
-/* =========================================
-   FEATURE STRIP
-========================================= */
-
+ 
+ 
 .feature-section {
   padding: 10px 0 30px;
 }
-
+ 
 .feature-container {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
-
+ 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
-
+ 
 .feature-item {
   display: flex;
-  align-items: flex-start;
-  gap: 9px;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  gap: 4px;
+  padding: 20px 0px;
 }
-
-.feature-icon {
-  width: 25px;
-  height: 25px;
-  flex: 0 0 25px;
-
-  display: grid;
-  place-items: center;
-
+ 
+.feature-react-icon {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   color: #05af38;
   font-size: 14px;
 }
-
+ 
 .feature-item h4 {
   margin: 1px 0 4px;
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
 }
-
+ 
 .feature-item p {
   margin: 0;
   color: #a0a0a0;
-  font-size: 7px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.6;
 }
-
+ 
 /* =========================================
    OPENED NOW
 ========================================= */
-
+ 
 .opened-section {
   padding-bottom: 42px;
 }
-
+ 
 .opened-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 13px;
 }
-
+ 
 .opened-card {
   position: relative;
   height: 320px;
@@ -341,12 +343,12 @@
   border-radius: 5px;
   background: #222;
 }
-
+ 
 .opened-card > img {
   height: 100%;
   object-fit: cover;
 }
-
+ 
 .market-card-overlay {
   position: absolute;
   inset: 0;
@@ -357,74 +359,83 @@
       rgba(0, 0, 0, 0.7)
     );
 }
-
+ 
 .opened-card-content {
   position: absolute;
   inset: 0;
-
+ 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+ 
   color: #fff;
   text-align: center;
 }
-
+ 
 .opened-card-content h3 {
-  margin: 0 0 25px;
+  margin: 0 0 10px;
   font-size: 23px;
   font-weight: 800;
+  color: #ffffff;
 }
-
+.open-card-h2{
+  font-size: 14px;
+  color: #ffffff;
+}
+ 
 .countdown {
   display: flex;
   align-items: center;
   gap: 17px;
   margin-bottom: 25px;
 }
-
+.countdown span{
+  color: #ffffff;
+ }
 .countdown div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+ 
 .countdown strong {
   font-size: 18px;
   line-height: 1;
   font-weight: 600;
 }
-
+ 
 .countdown span {
   margin-top: 4px;
   font-size: 7px;
   opacity: 0.8;
 }
-
+ 
 .market-btn {
   padding: 8px 13px;
   background: #ffffff;
   color: #05a835;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
 }
-
+ 
 /* =========================================
    POPULAR PRODUCE
 ========================================= */
-
+ 
 .produce-section {
   padding: 48px 0 55px;
   background: #f0ffdf;
 }
-
+.section-heading h2{
+  color: #000000;
+}
 .produce-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
-
+ 
 .produce-card {
   overflow: hidden;
   border-radius: 6px;
@@ -432,23 +443,23 @@
   border: 1px solid #edf0eb;
   transition: 0.25s ease;
 }
-
+ 
 .produce-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 30px rgba(0, 70, 25, 0.08);
 }
-
+ 
 .produce-image-wrapper {
   position: relative;
   height: 125px;
   overflow: hidden;
 }
-
+ 
 .produce-image-wrapper img {
   height: 100%;
   object-fit: cover;
 }
-
+ 
 .produce-tag {
   position: absolute;
   top: 8px;
@@ -461,16 +472,26 @@
   font-weight: 600;
 }
 
+.produce-tag-in {
+  background: rgba(6, 180, 55, 0.14);
+  color: #078c32;
+}
+
+.produce-tag-out {
+  background: rgba(0, 0, 0, 0.06);
+  color: #8a8a8a;
+}
+ 
 .produce-content {
   padding: 12px;
 }
-
+ 
 .produce-content h3 {
   margin: 0 0 7px;
   font-size: 13px;
   font-weight: 700;
 }
-
+ 
 .produce-content p {
   margin: 0;
   min-height: 55px;
@@ -478,7 +499,7 @@
   font-size: 7px;
   line-height: 1.5;
 }
-
+ 
 .produce-footer {
   display: flex;
   justify-content: space-between;
@@ -487,32 +508,33 @@
   margin-top: 7px;
   border-top: 1px solid #eeeeee;
   color: #aaa;
-  font-size: 6px;
+  font-size: 8px;
 }
-
-.produce-footer a {
-  display: inline-flex;
+ 
+.produce-footer p {
+  display: flex;
   align-items: center;
   gap: 3px;
   color: #07a936;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 8px;
 }
-
+ 
 /* =========================================
    POPULAR MARKETS
 ========================================= */
-
+ 
 .markets-section {
   padding-top: 52px;
   padding-bottom: 80px;
 }
-
+ 
 .markets-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 23px;
 }
-
+ 
 .market-info-card {
   overflow: hidden;
   background: #ffffff;
@@ -520,39 +542,39 @@
   border-radius: 2px;
   transition: 0.25s ease;
 }
-
+ 
 .market-info-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
-
+ 
 .market-image {
   height: 100px;
   overflow: hidden;
 }
-
+ 
 .market-image img {
   height: 100%;
   object-fit: cover;
 }
-
+ 
 .market-info {
   padding: 10px;
 }
-
+ 
 .market-title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 5px;
 }
-
+ 
 .market-title-row h3 {
   margin: 0;
   font-size: 11px;
   font-weight: 700;
 }
-
+ 
 .market-title-row span {
   padding: 3px 5px;
   border-radius: 3px;
@@ -561,7 +583,7 @@
   font-size: 5px;
   font-weight: 700;
 }
-
+ 
 .market-location {
   display: flex;
   align-items: center;
@@ -570,82 +592,92 @@
   color: #999;
   font-size: 6px;
 }
-
+ 
 .market-meta {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  /* justify-content: space-around; */
+  gap: 20px;
   padding: 7px 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
-
+.market-meta-left, .market-meta-right{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 6px;
+}
 .market-meta span {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #777;
-  font-size: 6px;
+  color: #2F4938;
+  font-size: 8px;
+  font-weight: 600;
 }
-
+.market-meta .market-meta-left h6{
+  font-size: 8px;
+  color: #70756A;
+  font-weight: 600;
+}
+.market-meta .market-meta-right h6{
+  font-size: 8px;
+  color: #70756A;
+  font-weight: 600;
+}
+ 
 .market-meta svg {
   color: #09ac37;
   font-size: 8px;
+  margin-top: 3px;
 }
-
+ 
 .market-link {
   display: flex;
-  justify-content: space-between;
+  gap: 4px;
   align-items: center;
   padding-top: 9px;
   color: #08a936;
   font-size: 7px;
   font-weight: 700;
 }
-
+ 
 /* =========================================
    FAQ
 ========================================= */
-
+ 
 .faq-section {
   background: #efffdd;
   overflow: hidden;
 }
-
+ 
 .faq-container {
   width: min(1120px, calc(100% - 40px));
   min-height: 340px;
   margin: 0 auto;
-
+ 
   display: grid;
   grid-template-columns: 1fr 0.85fr;
-  gap: 40px;
+  /* gap: 40px; */
   align-items: end;
 }
-
+ 
 .faq-content {
   padding: 45px 0 38px;
 }
-
-.section-label {
-  color: #06a834;
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
+ 
 .faq-content h2 {
   margin: 7px 0 15px;
   font-size: 28px;
   line-height: 1.1;
   font-weight: 800;
 }
-
+ 
 .faq-list {
   width: 100%;
   max-width: 560px;
 }
-
+ 
 .faq-item {
   margin-bottom: 7px;
   overflow: hidden;
@@ -653,19 +685,19 @@
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.4);
 }
-
+ 
 .faq-question {
   width: 100%;
   min-height: 37px;
   padding: 8px 12px;
-
+ 
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+ 
   border: 0;
   background: transparent;
-
+ 
   color: #222;
   font-family: inherit;
   font-size: 8px;
@@ -673,16 +705,16 @@
   text-align: left;
   cursor: pointer;
 }
-
+ 
 .faq-question svg {
   flex-shrink: 0;
   transition: transform 0.25s ease;
 }
-
+ 
 .faq-item.active .faq-question svg {
   transform: rotate(180deg);
 }
-
+ 
 .faq-answer {
   max-height: 0;
   overflow: hidden;
@@ -690,11 +722,11 @@
     max-height 0.3s ease,
     padding 0.3s ease;
 }
-
+ 
 .faq-item.active .faq-answer {
   max-height: 150px;
 }
-
+ 
 .faq-answer p {
   margin: 0;
   padding: 0 12px 12px;
@@ -702,17 +734,17 @@
   font-size: 7px;
   line-height: 1.6;
 }
-
+ 
 .faq-image {
   position: relative;
   height: 100%;
   min-height: 340px;
-
+ 
   display: flex;
   align-items: end;
   justify-content: center;
 }
-
+ 
 .faq-image > img {
   width: 100%;
   max-width: 450px;
@@ -720,63 +752,63 @@
   object-fit: contain;
   object-position: bottom;
 }
-
+ 
 .assistant-button {
   position: absolute;
   right: 28px;
   bottom: 40px;
-
+ 
   width: 50px;
   height: 50px;
-
+ 
   display: grid;
   place-items: center;
-
+ 
   border: 5px solid #ffffff;
   border-radius: 50%;
   background: #05b83a;
-
+ 
   color: #ffffff;
   font-size: 20px;
-
+ 
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
-
+ 
 /* =========================================
    NEWSLETTER
 ========================================= */
-
+ 
 .newsletter-section {
   background: #f6f6f6;
 }
-
+ 
 .newsletter-container {
   width: min(1120px, calc(100% - 40px));
   min-height: 75px;
   margin: 0 auto;
-
+ 
   display: flex;
   align-items: center;
   gap: 25px;
 }
-
+ 
 .newsletter-text {
   width: 33%;
 }
-
+ 
 .newsletter-text h3 {
   margin: 0 0 4px;
   font-size: 12px;
   font-weight: 700;
 }
-
+ 
 .newsletter-text p {
   margin: 0;
   color: #9a9a9a;
   font-size: 6px;
   line-height: 1.4;
 }
-
+ 
 .newsletter-form {
   flex: 1;
   display: flex;
@@ -786,112 +818,112 @@
   overflow: hidden;
   background: #ffffff;
 }
-
+ 
 .newsletter-form input {
   min-width: 0;
   flex: 1;
   padding: 0 15px;
-
+ 
   border: 0;
   outline: 0;
-
+ 
   font-family: inherit;
   font-size: 8px;
 }
-
+ 
 .newsletter-form button {
   width: 90px;
   border: 0;
   border-radius: 30px;
-
+ 
   background: #05b737;
   color: #fff;
-
+ 
   font-family: inherit;
   font-size: 8px;
   font-weight: 700;
-
+ 
   cursor: pointer;
 }
-
+ 
 .social-icons {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
+ 
 .social-icons a {
   width: 21px;
   height: 21px;
-
+ 
   display: grid;
   place-items: center;
-
+ 
   color: #666;
   font-size: 9px;
 }
-
+ 
 /* =========================================
    TABLET
 ========================================= */
-
+ 
 @media (max-width: 900px) {
-
+ 
   .hero-container {
     grid-template-columns: 1fr;
   }
-
+ 
   .hero-main {
     height: 400px;
   }
-
+ 
   .hero-side {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 220px;
   }
-
+ 
   .feature-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 22px;
   }
-
+ 
   .produce-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
+ 
   .markets-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
+ 
   .opened-card {
     height: 280px;
   }
-
+ 
   .faq-container {
     grid-template-columns: 1fr 0.8fr;
   }
-
+ 
   .newsletter-container {
     flex-wrap: wrap;
     padding: 18px 0;
   }
-
+ 
   .newsletter-text {
     width: 100%;
   }
-
+ 
   .newsletter-form {
     width: 70%;
     flex: initial;
   }
 }
-
+ 
 /* =========================================
    MOBILE
 ========================================= */
-
+ 
 @media (max-width: 600px) {
-
+ 
   .section-container,
   .hero-container,
   .feature-container,
@@ -899,230 +931,230 @@
   .newsletter-container {
     width: min(100% - 28px, 500px);
   }
-
+ 
   .section-heading {
     margin-bottom: 16px;
   }
-
+ 
   .section-heading h2 {
     font-size: 19px;
   }
-
+ 
   .view-all {
     font-size: 10px;
   }
-
+ 
   /* Hero */
-
+ 
   .hero-section {
     padding: 10px 0 15px;
   }
-
+ 
   .hero-main {
     height: 380px;
   }
-
+ 
   .hero-content {
     left: 22px;
     right: 20px;
   }
-
+ 
   .hero-content h1 {
     font-size: 34px;
   }
-
+ 
   .hero-content p {
     font-size: 10px;
   }
-
+ 
   .hero-side {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 160px 160px;
   }
-
+ 
   .hero-small-card {
     min-height: 160px;
   }
-
+ 
   .small-card-content h2 {
     font-size: 18px;
   }
-
+ 
   /* Features */
-
+ 
   .feature-section {
     padding: 10px 0 28px;
   }
-
+ 
   .feature-container {
     grid-template-columns: 1fr 1fr;
     gap: 20px 10px;
   }
-
+ 
   .feature-item {
     gap: 5px;
   }
-
+ 
   .feature-item h4 {
     font-size: 8px;
   }
-
+ 
   .feature-item p {
     font-size: 6px;
   }
-
+ 
   /* Opened */
-
+ 
   .opened-section {
     padding-bottom: 35px;
   }
-
+ 
   .opened-grid {
     grid-template-columns: 1fr;
   }
-
+ 
   .opened-card {
     height: 300px;
   }
-
+ 
   .opened-card-content h3 {
     font-size: 22px;
   }
-
+ 
   /* Produce */
-
+ 
   .produce-section {
     padding: 35px 0 40px;
   }
-
+ 
   .produce-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
-
+ 
   .produce-image-wrapper {
     height: 115px;
   }
-
+ 
   .produce-content {
     padding: 9px;
   }
-
+ 
   .produce-content h3 {
     font-size: 12px;
   }
-
+ 
   .produce-content p {
     min-height: 68px;
     font-size: 7px;
   }
-
+ 
   /* Markets */
-
+ 
   .markets-section {
     padding-top: 35px;
     padding-bottom: 45px;
   }
-
+ 
   .markets-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-
+ 
   .market-image {
     height: 90px;
   }
-
+ 
   .market-info {
     padding: 8px;
   }
-
+ 
   .market-title-row {
     align-items: flex-start;
   }
-
+ 
   .market-title-row h3 {
     font-size: 9px;
   }
-
+ 
   /* FAQ */
-
+ 
   .faq-container {
     grid-template-columns: 1fr;
     gap: 0;
   }
-
+ 
   .faq-content {
     padding: 35px 0 10px;
   }
-
+ 
   .faq-content h2 {
     font-size: 24px;
   }
-
+ 
   .faq-image {
     min-height: 300px;
   }
-
+ 
   .faq-image > img {
     max-width: 330px;
   }
-
+ 
   .assistant-button {
     right: 15px;
     bottom: 25px;
   }
-
+ 
   /* Newsletter */
-
+ 
   .newsletter-container {
     display: block;
     padding: 20px 0;
   }
-
+ 
   .newsletter-text {
     margin-bottom: 12px;
   }
-
+ 
   .newsletter-form {
     width: 100%;
     height: 38px;
   }
-
+ 
   .newsletter-form button {
     width: 85px;
   }
-
+ 
   .social-icons {
     margin-top: 13px;
     justify-content: center;
   }
 }
-
+ 
 /* =========================================
    VERY SMALL MOBILE
 ========================================= */
-
+ 
 @media (max-width: 380px) {
-
+ 
   .hero-content h1 {
     font-size: 29px;
   }
-
+ 
   .produce-grid,
   .markets-grid {
     grid-template-columns: 1fr;
   }
-
+ 
   .feature-container {
     grid-template-columns: 1fr;
   }
-
+ 
   .opened-card {
     height: 270px;
   }
-
+ 
   .countdown {
     gap: 13px;
   }
