@@ -44,13 +44,13 @@ export default function Error404() {
       
 
       <div className="breadcrumb-banner">
-        <div className="breadcrumb-inner">
+        {/* <div className="breadcrumb-inner">
           <Link to="/" aria-label="Home">
             🏠
           </Link>
           <span className="crumb-sep">›</span>
           <span className="crumb-current">404 Error Page</span>
-        </div>
+        </div> */}
       </div>
 
       <section className="notfound-content">
@@ -62,7 +62,7 @@ export default function Error404() {
         <h1>Oops! page not found</h1>
         <p>
           Looks like this page wandered off while looking for the freshest
-          produce! 🥕🍅
+          produce! 
           <br />
           The page you&apos;re looking for doesn&apos;t exist, may have been
           moved, or the link might be incorrect.
