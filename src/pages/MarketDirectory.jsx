@@ -55,6 +55,77 @@ function getMarketCategories(market, produceCategoryMap) {
   return [...new Set([...fromExplicit, ...fromProduce])];
 }
 
+function normalizeProduceCategory(category = "") {
+  const normalized = category.trim().toLowerCase();
+  if (normalized === "fruits" || normalized === "fresh fruits") {
+    return "fresh fruits";
+  }
+  if (normalized === "vegetables" || normalized === "fresh vegetables") {
+    return "fresh vegetables";
+  }
+  return normalized;
+}
+
+const MARKET_PRODUCE_CATEGORY_HINTS = {
+  Grains: ["rice", "corn", "maize", "millet", "sorghum", "fonio", "grain"],
+  Tubers: ["yam", "cassava", "potato", "plantain", "cocoyam", "tuber"],
+  "Fresh Fruits": [
+    "fruit",
+    "mango",
+    "watermelon",
+    "orange",
+    "pineapple",
+    "guava",
+    "papaya",
+    "pawpaw",
+    "apple",
+    "banana",
+    "berry",
+    "avocado",
+    "coconut",
+    "pomegranate",
+  ],
+  Legumes: ["bean", "legume", "groundnut", "soy", "cowpea", "bambara"],
+  "Fresh Vegetables": [
+    "tomato",
+    "carrot",
+    "lettuce",
+    "pepper",
+    "pumpkin",
+    "cabbage",
+    "onion",
+    "vegetable",
+    "veggie",
+    "okra",
+    "leafy",
+  ],
+  Herbs: [
+    "herb",
+    "basil",
+    "mint",
+    "scent leaf",
+    "uziza",
+    "bitter leaf",
+    "ginger",
+  ],
+  "Poultry & Eggs": ["egg", "chicken", "turkey", "duck", "poultry"],
+};
+
+function marketHasProduceCategory(market, category) {
+  const targetCategory = normalizeProduceCategory(category);
+  const matchesDerivedCategory = market.derivedCategories.some(
+    (marketCategory) =>
+      normalizeProduceCategory(marketCategory) === targetCategory,
+  );
+  if (matchesDerivedCategory) return true;
+
+  const hints = MARKET_PRODUCE_CATEGORY_HINTS[category] || [];
+  return (market.availableProduce || []).some((item) => {
+    const normalizedItem = item.toLowerCase();
+    return hints.some((hint) => normalizedItem.includes(hint));
+  });
+}
+
 const AREA_COORDS = {
   Lagos: { lat: 6.5244, lng: 3.3792 },
   Ibadan: { lat: 7.3775, lng: 3.947 },
@@ -149,16 +220,14 @@ function MarketDirectory() {
   }, [enrichedMarkets]);
 
   const produceTypeOptions = useMemo(() => {
-    const counts = {};
-    enrichedMarkets.forEach((m) => {
-      m.derivedCategories.forEach((cat) => {
-        counts[cat] = (counts[cat] || 0) + 1;
-      });
-    });
-    return Object.entries(counts)
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => b.count - a.count);
-  }, [enrichedMarkets]);
+    const categoryNames = [...new Set(produce.map((item) => item.category))];
+    return categoryNames.map((name) => ({
+      name,
+      count: enrichedMarkets.filter((market) =>
+        marketHasProduceCategory(market, name),
+      ).length,
+    }));
+  }, [enrichedMarkets, produce]);
 
   const [activeArea, setActiveArea] = useState(null);
   const [activeDay, setActiveDay] = useState(null);
@@ -234,8 +303,8 @@ function MarketDirectory() {
       items = items.filter((m) => (m.days || []).includes(activeDay));
     }
     if (activeProduceType) {
-      items = items.filter((m) =>
-        m.derivedCategories.includes(activeProduceType),
+      items = items.filter((market) =>
+        marketHasProduceCategory(market, activeProduceType),
       );
     }
     if (searchTerm.trim()) {
@@ -426,13 +495,21 @@ function MarketDirectory() {
 
             <div className="md-sidebar-block">
               <h4>Produce Type</h4>
-              <ul className="md-filter-list">
-                <li
-                  className={!activeProduceType ? "md-opt-active" : ""}
-                  onClick={() => toggleProduceType(null)}
-                >
-                  <span className="md-radio" />
-                  All
+              <ul
+                className="md-filter-list md-produce-type-list"
+                role="group"
+                aria-label="Produce type"
+              >
+                <li className={!activeProduceType ? "md-opt-active" : ""}>
+                  <button
+                    type="button"
+                    aria-pressed={!activeProduceType}
+                    onClick={() => toggleProduceType(null)}
+                  >
+                    <span className="md-radio" />
+                    All{" "}
+                    <span className="md-count">({enrichedMarkets.length})</span>
+                  </button>
                 </li>
                 {produceTypeOptions.map((opt) => (
                   <li
@@ -440,10 +517,15 @@ function MarketDirectory() {
                     className={
                       activeProduceType === opt.name ? "md-opt-active" : ""
                     }
-                    onClick={() => toggleProduceType(opt.name)}
                   >
-                    <span className="md-radio" />
-                    {opt.name} <span className="md-count">({opt.count})</span>
+                    <button
+                      type="button"
+                      aria-pressed={activeProduceType === opt.name}
+                      onClick={() => toggleProduceType(opt.name)}
+                    >
+                      <span className="md-radio" />
+                      {opt.name} <span className="md-count">({opt.count})</span>
+                    </button>
                   </li>
                 ))}
               </ul>
