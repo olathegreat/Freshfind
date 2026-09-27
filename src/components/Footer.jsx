@@ -24,7 +24,12 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-intro">
-          <img src={logoWhite} alt="FreshFind" className="footer-logo" />
+          <img
+            src={logoWhite}
+            alt="FreshFind"
+            className="footer-logo"
+            loading="lazy"
+          />
           <p>
             Your local market companion. Find the best
             <br />

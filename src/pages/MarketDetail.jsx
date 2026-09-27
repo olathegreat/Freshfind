@@ -54,7 +54,7 @@ const MarketDetail = () => {
       <div className="detail-hero">
         <div className="container detail-hero-container">
           <div className="detail-image animate-fade-up">
-            <img src={market.image} alt={market.name} />
+            <img src={market.image} alt={market.name} fetchPriority="high" />
           </div>
           <div className="detail-info animate-fade-up delay-1">
             <h1>{market.name}</h1>

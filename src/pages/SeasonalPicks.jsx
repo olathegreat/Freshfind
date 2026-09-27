@@ -81,7 +81,11 @@ export default function Home() {
           </a>
         </div>
         <div className="hero-visual" aria-hidden="true">
-          <img src={heroimage} alt="hero-image" />
+          <img
+            src={heroimage}
+            alt="Fresh produce in season"
+            fetchPriority="high"
+          />
         </div>
       </section>
 

@@ -52,6 +52,7 @@ const About = () => {
             <img
               src="https://res.cloudinary.com/tummi9le/image/upload/v1790335510/image20.png"
               alt="Community Market"
+              loading="lazy"
             />
           </div>
         </div>

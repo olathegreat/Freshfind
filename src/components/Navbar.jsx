@@ -37,7 +37,6 @@ function formatNow(date) {
 
 const Navbar = () => {
   const [menuPath, setMenuPath] = useState(null);
-  const [visitorCount, setVisitorCount] = useState(BASE_VISITOR_COUNT);
   const [now, setNow] = useState(() => new Date());
   const [locationLabel, setLocationLabel] = useState(() =>
     navigator.geolocation ? "Locating you…" : "Location unavailable",
@@ -67,25 +66,8 @@ const Navbar = () => {
 
   // Live clock — ticks every second.
   useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), 1000);
+    const id = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(id);
-  }, []);
-
-  // Simulates a live visitor counter — ticks up by a small random
-  // amount on a random interval, purely for visual effect.
-  useEffect(() => {
-    let timeoutId;
-
-    const scheduleNextTick = () => {
-      const delay = 3000 + Math.random() * 5000; // 3–8s
-      timeoutId = setTimeout(() => {
-        setVisitorCount((prev) => prev + Math.floor(Math.random() * 3) + 1);
-        scheduleNextTick();
-      }, delay);
-    };
-
-    scheduleNextTick();
-    return () => clearTimeout(timeoutId);
   }, []);
 
   // Browser geolocation — asks for the visitor's position, then
@@ -98,34 +80,57 @@ const Navbar = () => {
     }
 
     let cancelled = false;
+    let idleCallbackId;
+    let fallbackTimeoutId;
 
-    navigator.geolocation.getCurrentPosition(
-      async ({ coords }) => {
-        try {
-          const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.latitude}&lon=${coords.longitude}`,
-          );
-          const data = await res.json();
-          if (cancelled) return;
+    const locateVisitor = () => {
+      if (cancelled) return;
+      navigator.geolocation.getCurrentPosition(
+        async ({ coords }) => {
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.latitude}&lon=${coords.longitude}`,
+            );
+            const data = await res.json();
+            if (cancelled) return;
 
-          const a = data.address || {};
-          const city = a.city || a.town || a.village || a.suburb || a.county;
-          const parts = [city, a.state, a.country].filter(Boolean);
+            const address = data.address || {};
+            const city =
+              address.city ||
+              address.town ||
+              address.village ||
+              address.suburb ||
+              address.county;
+            const parts = [city, address.state, address.country].filter(
+              Boolean,
+            );
+            setLocationLabel(parts.length ? parts.join(", ") : "Your location");
+          } catch {
+            if (!cancelled) setLocationLabel("Your location");
+          }
+        },
+        () => {
+          if (!cancelled)
+            setLocationLabel("Enable location for markets near you");
+        },
+        { timeout: 8000 },
+      );
+    };
 
-          setLocationLabel(parts.length ? parts.join(", ") : "Your location");
-        } catch {
-          if (!cancelled) setLocationLabel("Your location");
-        }
-      },
-      () => {
-        if (!cancelled)
-          setLocationLabel("Enable location for markets near you");
-      },
-      { timeout: 8000 },
-    );
+    if ("requestIdleCallback" in window) {
+      idleCallbackId = window.requestIdleCallback(locateVisitor, {
+        timeout: 5000,
+      });
+    } else {
+      fallbackTimeoutId = window.setTimeout(locateVisitor, 2000);
+    }
 
     return () => {
       cancelled = true;
+      if (idleCallbackId && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleCallbackId);
+      }
+      window.clearTimeout(fallbackTimeoutId);
     };
   }, []);
 
@@ -145,7 +150,7 @@ const Navbar = () => {
         <div className="header-main">
           <div className="header-inner">
             <Link className="brand" to="/" aria-label="FreshFind home">
-              <img src={logo} alt="FreshFind" />
+              <img src={logo} alt="FreshFind" fetchPriority="high" />
             </Link>
 
             <form className="search-form" role="search" onSubmit={submitSearch}>
@@ -178,7 +183,7 @@ const Navbar = () => {
                 </span>
                 <span>
                   <small>Visitor Count</small>
-                  <strong>{visitorCount.toLocaleString()}</strong>
+                  <strong>{BASE_VISITOR_COUNT.toLocaleString()}</strong>
                 </span>
               </div>
             </div>
@@ -250,7 +255,7 @@ const Navbar = () => {
         <div className="nav-drawer-head">
           <span className="nav-drawer-brand">
             <Link className="brand" to="/" aria-label="FreshFind home">
-              <img src={logoWhite} alt="FreshFind" />
+              <img src={logoWhite} alt="FreshFind" loading="lazy" />
             </Link>
           </span>
           <button

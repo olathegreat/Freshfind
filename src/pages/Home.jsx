@@ -270,6 +270,7 @@ function Home() {
                 src={homeImage}
                 alt="Local farmer with fresh produce"
                 className="hero-main-image"
+                fetchPriority="high"
               />
 
               <div className="hero-overlay" />
@@ -298,7 +299,7 @@ function Home() {
             <div className="hero-side">
               <div className="hero-small-card nearby-card">
                 <div className="small-card-content">
-                  <img src={homeImage2} alt="Fresh vegetables" />
+                  <img src={homeImage2} alt="Fresh vegetables" loading="lazy" />
 
                   <div className="overlay-div">
                     <h2>
@@ -318,7 +319,7 @@ function Home() {
               </div>
 
               <div className="hero-small-card sseasonal-card">
-                <img src={homeImage3} alt="Seasonal produce" />
+                <img src={homeImage3} alt="Seasonal produce" loading="lazy" />
 
                 <div className="seasonal-overlay" />
 
@@ -410,7 +411,7 @@ function Home() {
 
               return (
                 <article className="opened-card" key={market.id}>
-                  <img src={market.image} alt={market.name} />
+                  <img src={market.image} alt={market.name} loading="lazy" />
 
                   <div className="market-card-overlay" />
 
@@ -473,7 +474,7 @@ function Home() {
                 return (
                   <article className="produce-card" key={item.id}>
                     <div className="produce-image-wrapper">
-                      <img src={item.picture} alt={item.name} />
+                      <img src={item.picture} alt={item.name} loading="lazy" />
 
                       <span
                         className={`produce-tag ${
@@ -503,7 +504,10 @@ function Home() {
         </section>
 
         {/* ================= POPULAR MARKETS ================= */}
-        <section id="popular-markets" className="markets-section section-container">
+        <section
+          id="popular-markets"
+          className="markets-section section-container"
+        >
           <div className="section-heading">
             <h2>Popular Markets</h2>
 
@@ -517,7 +521,7 @@ function Home() {
             {popularMarkets.map((market) => (
               <article className="market-info-card" key={market.id}>
                 <div className="market-image">
-                  <img src={market.image} alt={market.name} />
+                  <img src={market.image} alt={market.name} loading="lazy" />
                   <button
                     className={`home-market-bookmark${bookmarkedIds.includes(market.id) ? " is-bookmarked" : ""}`}
                     type="button"
@@ -610,7 +614,11 @@ function Home() {
             </div>
 
             <div className="faq-image">
-              <img src={FAQimage} alt="Farmer holding fresh vegetables" />
+              <img
+                src={FAQimage}
+                alt="Farmer holding fresh vegetables"
+                loading="lazy"
+              />
 
               <div className="assistant-button">
                 <FiMessageCircle />

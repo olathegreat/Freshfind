@@ -10,6 +10,7 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer"; // <-- Import Footer
 import Chatbot from "./components/Chatbot";
+import ScrollReveal from "./components/ScrollReveal";
 
 // Pages
 import Home from "./pages/Home";
@@ -56,6 +57,7 @@ function App() {
     <Router>
       <BookmarkProvider>
         <ScrollToTop />
+        <ScrollReveal />
         <div
           className="app"
           style={{
