@@ -577,14 +577,5 @@
     "description": "A crunchy root vegetable commonly eaten fresh or added to soups, stews, and salads.",
     "markets": ["Mile 12 Market", "Wuse Market", "Oyingbo Market"]
   }
-],
-  "chatbotLogic": {
-    "greeting": "Hi! I'm the FreshFind Assistant. What would you like to find today?",
-    "quickReplies": ["Find a market near me", "What's open today?", "Where can I find tomatoes?", "What's in season?"],
-    "responses": {
-      "tomatoes": "You can find fresh tomatoes at Green Valley Farmers Market and FreshFields Market.",
-      "open today": "Green Valley Farmers Market is open today from 8:00 AM to 5:00 PM.",
-      "default": "I can help you find markets, check opening times, and discover seasonal produce. Try asking about a specific market or produce!"
-    }
-  }
+]
 }

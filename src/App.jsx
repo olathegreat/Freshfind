@@ -9,6 +9,7 @@ import {
 // Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer"; // <-- Import Footer
+import Chatbot from "./components/Chatbot";
 
 // Pages
 import Home from "./pages/Home";
@@ -77,6 +78,7 @@ function App() {
               <Route path="*" element={<Error404 />} />
             </Routes>
           </main>
+          <Chatbot />
           <Footer />
         </div>
       </BookmarkProvider>

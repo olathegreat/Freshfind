@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { FiMapPin, FiClock, FiMessageCircle } from "react-icons/fi";
 import { PiPlant } from "react-icons/pi";
 import heroimage from "../assets/hero-image.png";
-import Chatbot from "../components/Chatbot";
 import freshfindData from "../data/freshfindData.json";
 import "./SeasonalPicks.css";
 
@@ -120,8 +119,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <Chatbot />
     </div>
   );
 }

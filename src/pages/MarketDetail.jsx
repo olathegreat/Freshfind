@@ -31,6 +31,13 @@ const MarketDetail = () => {
   }
 
   const isBookmarked = bookmarkedIds.includes(market.id);
+  const locationParts = market.location
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const neighborhood = locationParts[0] || market.location;
+  const area = locationParts.slice(1).join(", ") || "Area not specified";
+  const mapQuery = encodeURIComponent(`${market.name}, ${market.location}`);
 
   return (
     <div className="market-detail-page">
@@ -54,6 +61,20 @@ const MarketDetail = () => {
             <p className="detail-location">
               <FaMapMarkerAlt /> {market.location}
             </p>
+            <dl className="detail-location-facts">
+              <div>
+                <dt>Address</dt>
+                <dd>{market.location}</dd>
+              </div>
+              <div>
+                <dt>Neighborhood</dt>
+                <dd>{neighborhood}</dd>
+              </div>
+              <div>
+                <dt>Area</dt>
+                <dd>{area}</dd>
+              </div>
+            </dl>
             <div className="detail-actions">
               <button
                 className="btn btn-secondary"
@@ -71,6 +92,36 @@ const MarketDetail = () => {
           </div>
         </div>
       </div>
+
+      <section
+        className="container section detail-map-section"
+        aria-labelledby="market-map-title"
+      >
+        <div className="detail-map-heading">
+          <div>
+            <h2 id="market-map-title">Find {market.name}</h2>
+            <p>
+              {neighborhood}, {area}
+            </p>
+          </div>
+          <a
+            className="detail-map-link"
+            href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open in Google Maps
+          </a>
+        </div>
+        <iframe
+          className="detail-map"
+          title={`Map showing ${market.name} in ${market.location}`}
+          src={`https://maps.google.com/maps?q=${mapQuery}&output=embed`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+      </section>
 
       <div className="container section detail-grid">
         {/* Schedule Section */}

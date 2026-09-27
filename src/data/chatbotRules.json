@@ -1,0 +1,33 @@
+{
+  "greeting": "Hi! I'm the FreshFind Assistant. Ask me about a market, produce, opening days, or what's in season.",
+  "quickReplies": [
+    "Find a market",
+    "Where can I find tomatoes?",
+    "What is in season?",
+    "What are the market hours?"
+  ],
+  "fallback": "I can answer questions about markets, available produce, market days, and seasonal picks using FreshFind's local directory. Try including a market or produce name.",
+  "rules": [
+    {
+      "keywords": ["hello", "hi", "hey", "good morning", "good afternoon"],
+      "action": "greeting",
+      "reply": "Hello! I can help you explore local markets, produce availability, market hours, and seasonal picks."
+    },
+    {
+      "keywords": ["open today", "open now", "opening hours", "market hours", "hours", "open"],
+      "action": "market_hours"
+    },
+    {
+      "keywords": ["season", "in season", "seasonal", "coming soon"],
+      "action": "seasonal_produce"
+    },
+    {
+      "keywords": ["produce", "tomato", "tomatoes", "yam", "yams", "pepper", "peppers", "watermelon", "fruit", "vegetable", "beans", "rice", "corn"],
+      "action": "produce_search"
+    },
+    {
+      "keywords": ["market", "markets", "find", "nearby", "location", "where"],
+      "action": "market_search"
+    }
+  ]
+}
